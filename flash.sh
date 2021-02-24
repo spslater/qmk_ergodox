@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 QMK="$HOME/Documents/qmk_firmware"
 CUR=$(pwd)
 
 cd "$QMK" && \
-make ergodox_ez:sean && \
+qmk compile -kb ergodox_ez -km sean && \
 
 cd "$CUR" && \
 mv "$QMK/ergodox_ez_sean.hex" "$CUR/ergodox_ez_sean.hex" && \

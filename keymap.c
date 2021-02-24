@@ -60,7 +60,6 @@ enum custom_keycodes {
 // https://docs.qmk.fm/#/feature_advanced_keycodes
 
 /* Template (Copy this one for each new layer)
-
   ,--------------------------------------------------.     ,--------------------------------------------------.
   |        |      |      |      |      |      |      |     |      |      |      |      |      |      |        |
   |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
@@ -90,9 +89,7 @@ enum custom_keycodes {
   ),
 */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
   /* [0] Keyboard // DEFAULT
-
     ,--------------------------------------------------.     ,--------------------------------------------------.
     | Caps   |  1   |  2   |  3   |  4   |  5   |TO 15 |     | TO 1 |  6   |  7   |  8   |  9   |  0   |        |
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
@@ -111,18 +108,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [SPS_DEFAULT] = LAYOUT_ergodox_pretty(
-    KC_CAPS,         KC_1,          KC_2,      KC_3,     KC_4,     KC_5,       TO(15),                          TO(1),      KC_6,  KC_7,      KC_8,      KC_9,          KC_0,         _____,
-    MO(SPS_NUMPAD),  KC_Q,          KC_W,      KC_E,     KC_R,     KC_T,       KC_ENTER,                        KC_DEL,     KC_Y,  KC_U,      KC_I,      KC_O,          KC_P,         KC_LSFT,
-    KC_TAB,          KC_A,          KC_S,      KC_D,     KC_F,     KC_G,                                                    KC_H,  KC_J,      KC_K,      KC_L,          KC_SCOLON,    KC_QUOTE,
-    KC_LSFT,         KC_Z,          KC_X,      KC_C,     KC_V,     KC_B,       KC_SPACE,                        KC_BSPACE,  KC_N,  KC_M,      KC_COMMA,  KC_DOT,        KC_SLASH,     MO(SPS_NUMPAD),
-    MO(SPS_NAV),     MO(SPS_FUNC),  KC_LCTRL,  KC_LGUI,  KC_LALT,                                                                  KC_MINUS,  KC_EQUAL,  KC_LBRACKET,   KC_RBRACKET,  MO(SPS_NAV),
-                                                                               _____,        _____,    _____,   _____,
-                                                                                             _____,    _____,
-                                                                   KC_BSPACE,  KC_DEL,       KC_ESC,   KC_ESC,  KC_ENTER,   KC_SPACE
+    KC_CAPS,        KC_1,         KC_2,     KC_3,    KC_4,    KC_5,      TO(SPS_GIMP),                           TO(SPS_NUMPAD), KC_6, KC_7,     KC_8,     KC_9,        KC_0,        _____,
+    MO(SPS_NUMPAD), KC_Q,         KC_W,     KC_E,    KC_R,    KC_T,      KC_ENTER,                               KC_DEL,         KC_Y, KC_U,     KC_I,     KC_O,        KC_P,        KC_LSFT,
+    KC_TAB,         KC_A,         KC_S,     KC_D,    KC_F,    KC_G,                                                              KC_H, KC_J,     KC_K,     KC_L,        KC_SCOLON,   KC_QUOTE,
+    KC_LSFT,        KC_Z,         KC_X,     KC_C,    KC_V,    KC_B,      KC_SPACE,                               KC_BSPACE,      KC_N, KC_M,     KC_COMMA, KC_DOT,      KC_SLASH,    MO(SPS_NUMPAD),
+    MO(SPS_NAV),    MO(SPS_FUNC), KC_LCTRL, KC_LGUI, KC_LALT,                                                                          KC_MINUS, KC_EQUAL, KC_LBRACKET, KC_RBRACKET, MO(SPS_NAV),
+                                                                         _____,        TO(SPS_DEFAULT),  _____,  _____,
+                                                                                       _____,            _____,
+                                                              KC_BSPACE, KC_DEL,       KC_ESC,           KC_ESC, KC_ENTER,       KC_SPACE
   ),
-
   /* [1] Special / Number Pad // NUMPAD
-
     ,--------------------------------------------------.     ,--------------------------------------------------.
     |        |      |      |      |      |      | TO 0 |     | TO 2 |      |      |  /   | *    |  -   |        |
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
@@ -141,18 +136,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [SPS_NUMPAD] = LAYOUT_ergodox_pretty(
-    _____,           _____,      _____,    _____,        _____,         _____,      TO(0),                              TO(2),      _____,   _____,       KC_KP_SLASH,  KC_KP_ASTERISK,  KC_KP_MINUS,  _____,
-    MO(SPS_NUMPAD),  KC_COLON,   KC_LPRN,  KC_ASTERISK,  KC_AMPERSAND,  _____,      KC_ENTER,                           KC_DEL,     _____,   KC_7,        KC_8,         KC_9,            KC_KP_PLUS,   _____,
-    KC_TAB,          KC_TILDE,   KC_CIRC,  KC_PERCENT,   KC_DOLLAR,     KC_GRAVE,                                                   KC_TAB,  KC_4,        KC_5,         KC_6,            KC_KP_DOT,    _____,
-    _____,           KC_BSLASH,  KC_HASH,  KC_AT,        KC_EXCLAIM,    KC_PIPE,    KC_SPACE,                           KC_BSPACE,  _____,   KC_1,        KC_2,         KC_3,            KC_KP_ENTER,  MO(SPS_NUMPAD),
-    _____,           _____,      _____,    _____,        _____,                                                                              KC_KP_MINUS, _____,        _____,           _____,        _____,
-                                                                                    _____,         _____,    _____,     _____,
-                                                                                                   _____,    _____,
-                                                                        KC_BSPACE,  KC_DEL,        KC_ESC,   KC_ESC,  KC_SPACE,     KC_0
+    _____,          _____,     _____,   _____,       _____,        _____,     TO(SPS_DEFAULT),                           TO(SPS_NAV),     _____,  _____,       KC_KP_SLASH, KC_KP_ASTERISK, KC_KP_MINUS, _____,
+    MO(SPS_NUMPAD), KC_COLON,  KC_LPRN, KC_ASTERISK, KC_AMPERSAND, _____,     KC_ENTER,                                  KC_DEL,      _____,  KC_7,        KC_8,        KC_9,           KC_KP_PLUS,  _____,
+    KC_TAB,         KC_TILDE,  KC_CIRC, KC_PERCENT,  KC_DOLLAR,    KC_GRAVE,                                                          KC_TAB, KC_4,        KC_5,        KC_6,           KC_KP_DOT,   _____,
+    _____,          KC_BSLASH, KC_HASH, KC_AT,       KC_EXCLAIM,   KC_PIPE,   KC_SPACE,                                  KC_BSPACE,   _____,  KC_1,        KC_2,        KC_3,           KC_KP_ENTER, MO(SPS_NUMPAD),
+    _____,          _____,     _____,   _____,       _____,                                                                                   KC_KP_MINUS, _____,       _____,          _____,       _____,
+                                                                              _____,           TO(SPS_DEFAULT),  _____,  _____,
+                                                                                               _____,            _____,
+                                                                   KC_BSPACE, KC_DEL,          KC_ESC,           KC_ESC, KC_SPACE,    KC_0
   ),
-
   /* [2] Navigation // NAV
-
     ,--------------------------------------------------.     ,--------------------------------------------------.  WU: Wheel Up
     |        |      |      |      |      |      |TO 14 |     | TO 0 |      |      |      |      |      | LOCK   |  WD: Wheel Down
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|  LC: Left Click
@@ -171,18 +164,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [SPS_NAV] = LAYOUT_ergodox_pretty(
-    _____,        _____,        _____,       _____,       _____,        _____,          TO(1),                              TO(3),            _____,    _____,      _____,     _____,        _____,         KC_MAC_LOCK,
-    _____,        _____,        KC_MS_BTN1,  KC_MS_UP,    KC_MS_BTN2,   KC_MS_BTN3,     KC_ENTER,                           KC_DEL,           KC_HOME,  KC_PGDOWN,  KC_PGUP,   KC_END,       _____,         _____,
-    _____,        KC_SLCT_ALL,  KC_MS_LEFT,  KC_MS_DOWN,  KC_MS_RIGHT,  KC_MS_WH_UP,                                                          KC_LEFT,  KC_DOWN,    KC_UP,     KC_RIGHT,     KC_LALT,       _____,
-    KC_LSFT,      KC_UNDO,      KC_CUT,      KC_COPY,     KC_PASTE,     KC_MS_WH_DOWN,  KC_SPACE,                           KC_BSPACE,        _____,    KC_MINUS,   KC_EQUAL,  _____,        _____,         _____,
-    MO(SPS_NAV),  _____,        _____,       KC_BSPACE,   KC_DEL,                                                                                       KC_ENTER,   KC_SPACE,  KC_WIN_LEFT,  KC_WIN_RIGHT,  MO(SPS_NAV),
-                                                                                        _____,           _____,    _____,   _____,
-                                                                                                         _____,    _____,
-                                                                        KC_LCTRL,       _____,           KC_ESC,   KC_ESC,  _____,  KC_LGUI
+    _____,       _____,       _____,      _____,      _____,       _____,         TO(SPS_NUMPAD),                           TO(SPS_FUNC),     _____,   _____,     _____,    _____,       _____,        KC_MAC_LOCK,
+    _____,       _____,       KC_MS_BTN1, KC_MS_UP,   KC_MS_BTN2,  KC_MS_BTN3,    KC_ENTER,                                 KC_DEL,       KC_HOME, KC_PGDOWN, KC_PGUP,  KC_END,      _____,        _____,
+    _____,       KC_SLCT_ALL, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_MS_WH_UP,                                                           KC_LEFT, KC_DOWN,   KC_UP,    KC_RIGHT,    KC_LALT,      _____,
+    KC_LSFT,     KC_UNDO,     KC_CUT,     KC_COPY,    KC_PASTE,    KC_MS_WH_DOWN, KC_SPACE,                                 KC_BSPACE,    _____,   KC_MINUS,  KC_EQUAL, _____,       _____,        _____,
+    MO(SPS_NAV), _____,       _____,      KC_BSPACE,  KC_DEL,                                                                                      KC_ENTER,  KC_SPACE, KC_WIN_LEFT, KC_WIN_RIGHT, MO(SPS_NAV),
+                                                                                  _____,          TO(SPS_DEFAULT),  _____,  _____,
+                                                                                                  _____,            _____,
+                                                                   KC_LCTRL,      _____,          KC_ESC,           KC_ESC, _____,        KC_LGUI
   ),
-
   /* [3] Functional // FUNC
-
     ,--------------------------------------------------.     ,--------------------------------------------------.
     |        |      |      |      |      |      | TO 2 |     |TO 14 |      |      |      |      |      |        | A BAK: Audio Back
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------| A FOR: Audio Forward
@@ -201,18 +192,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [SPS_FUNC] = LAYOUT_ergodox_pretty(
-    _____,  _____,         _____,    _____,    _____,    _____,  TO(SPS_GIMP),                   TO(SPS_NUMPAD),  _____,  _____,   _____,   _____,   _____,   _____,
-    _____,  _____,         _____,    _____,    _____,    _____,  _____,                          _____,           _____,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   _____,
-    _____,  _____,         KC_VOLD,  KC_MUTE,  KC_VOLU,  _____,                                                   _____,  KC_F5,   KC_F6,   KC_F7,   KC_F8,   _____,
-    _____,  _____,         KC_MPRV,  KC_MPLY,  KC_MNXT,  _____,  _____,                          _____,           _____,  KC_F9,   KC_F10,  KC_F11,  KC_F12,  _____,
-    _____,  MO(SPS_FUNC),  _____,    _____,    _____,                                                                     _____,   _____,   _____,   _____,   _____,
-                                                                 _____,         _____,   _____,  _____,
-                                                                                _____,   _____,
-                                                         _____,  _____,         _____,   _____,  _____,           _____
+    _____, _____,        _____,   _____,   _____,   _____, TO(SPS_NAV),                          TO(SPS_AUDACITY), _____, _____, _____,  _____,  _____,  _____,
+    _____, _____,        _____,   _____,   _____,   _____, _____,                                _____,            _____, KC_F1, KC_F2,  KC_F3,  KC_F4,  _____,
+    _____, _____,        KC_VOLD, KC_MUTE, KC_VOLU, _____,                                                         _____, KC_F5, KC_F6,  KC_F7,  KC_F8,  _____,
+    _____, _____,        KC_MPRV, KC_MPLY, KC_MNXT, _____, _____,                                _____,            _____, KC_F9, KC_F10, KC_F11, KC_F12, _____,
+    _____, MO(SPS_FUNC), _____,   _____,   _____,                                                                         _____, _____,  _____,  _____,  _____,
+                                                           _____,       TO(SPS_DEFAULT),  _____, _____,
+                                                                        _____,            _____,
+                                                    _____, _____,       _____,            _____, _____,            _____
   ),
-
   /* [1] Audacity // AUDACITY
-
     ,--------------------------------------------------.     ,--------------------------------------------------. CSK: Cursor to Select
     |        |      |      |      |      |      | TO 3 |     | TO 5 |      |      |      |      |      |        | SLNC: Silence
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------| S DEL: Split Delete
@@ -231,21 +220,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
 
     Notes: Move cursor > and cursor < to f and d location. move time and sel tool to v and c maybe.
-
   */
   [SPS_AUDACITY] = LAYOUT_ergodox_pretty(
-    _____,             _____,             _____,       _____,       _____,   _____,      TO(SPS_DEFAULT),                     TO(SPS_GIMP),  _____,  _____,       _____,       _____,        _____,  _____,
-    KC_ESC,            LCTL(LSFT(KC_K)),  LGUI(KC_1),  LGUI(KC_I),  _____,   KC_REDO,    _____,                               _____,         _____,  KC_MS_BTN1,  KC_MS_UP,    KC_MS_BTN2,   _____,  _____,
-    KC_DELETE,         LGUI(KC_L),        LGUI(KC_3),  KC_COMMA,    KC_DOT,  KC_UNDO,                                                        _____,  KC_MS_LEFT,  KC_MS_DOWN,  KC_MS_RIGHT,  _____,  _____,
-    LALT(LGUI(KC_K)),  _____,             KC_MS_BTN1,  KC_F1,       KC_F5,   _____,      _____,                               _____,         _____,  _____,       _____,       _____,        _____,  _____,
-    MO(SPS_NAV),       MO(SPS_FUNC),      _____,       _____,       _____,                                                                           _____,       _____,       _____,        _____,  _____,
-                                                                                         _____,            _____,     _____,  _____,
-                                                                                                           _____,     _____,
-                                                                             KC_SPACE,   KC_SAVE,          KC_ENTER,  _____,  _____,         _____
+    _____,            _____,            _____,      _____,      _____,  _____,    TO(SPS_FUNC),                          TO(SPS_GIMP), _____, _____,      _____,      _____,       _____, _____,
+    KC_ESC,           LCTL(LSFT(KC_K)), LGUI(KC_1), LGUI(KC_I), _____,  KC_REDO,  _____,                                 _____,        _____, KC_MS_BTN1, KC_MS_UP,   KC_MS_BTN2,  _____, _____,
+    KC_DELETE,        LGUI(KC_L),       LGUI(KC_3), KC_COMMA,   KC_DOT, KC_UNDO,                                                       _____, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _____, _____,
+    LALT(LGUI(KC_K)), _____,            KC_MS_BTN1, KC_F1,      KC_F5,  _____,    _____,                                 _____,        _____, _____,      _____,      _____,       _____, _____,
+    MO(SPS_NAV),      MO(SPS_FUNC),     _____,      _____,      _____,                                                                        _____,      _____,      _____,       _____, _____,
+                                                                                  _____,        TO(SPS_DEFAULT),  _____, _____,
+                                                                                                _____,            _____,
+                                                                        KC_SPACE, KC_SAVE,      KC_ENTER,         _____, _____,        _____
   ),
-
   /* [2] Gimp // GIMP
-
     ,--------------------------------------------------.     ,--------------------------------------------------.
     |        |      |      |      |      |      | TO 1 |     |TO 13 |      |      |  /   | *    |  -   |        |
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
@@ -264,18 +250,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [SPS_GIMP] = LAYOUT_ergodox_pretty(
-    _____,       _____,       _____,       _____,       _____,       _____,         TO(SPS_AUDACITY),                      TO(SPS_FUNC),  _____,  _____,  KC_SLASH,  KC_ASTERISK,  KC_MINUS,   _____,
-    KC_ESC,      LSFT(KC_L),  LSFT(KC_S),  KC_O,        LSFT(KC_O),  _____,         _____,                                 _____,         _____,  KC_7,   KC_8,      KC_9,         KC_PLUS,    _____,
-    LGUI(KC_A),  LSFT(KC_R),  KC_M,        LSFT(KC_B),  KC_R,        KC_F,                                                                _____,  KC_4,   KC_5,      KC_6,         KC_DOT,     _____,
-    KC_LSFT,     _____,       KC_X,        KC_T,        KC_U,        LGUI(KC_I),    _____,                                 _____,         _____,  KC_1,   KC_2,      KC_3,         KC_BSPACE,  _____,
-    MO(SPS_NAV), _____,       _____,       LGUI(KC_Z),  LGUI(KC_Y),                                                                               _____,  _____,     _____,        _____,      MO(SPS_NAV),
-                                                                                    _____,             _____,     _____,   _____,
-                                                                                                       _____,     _____,
-                                                                     KC_LGUI,       KC_DEL,            KC_SAVE,   KC_TAB,  KC_ENTER,      KC_0
+    _____,       _____,      _____,      _____,      _____,      _____,      TO(SPS_AUDACITY),                           TO(SPS_DEFAULT), _____, _____, KC_SLASH, KC_ASTERISK, KC_MINUS,  _____,
+    KC_ESC,      LSFT(KC_L), LSFT(KC_S), KC_O,       LSFT(KC_O), _____,      _____,                                      _____,           _____, KC_7,  KC_8,     KC_9,        KC_PLUS,   _____,
+    LGUI(KC_A),  LSFT(KC_R), KC_M,       LSFT(KC_B), KC_R,       KC_F,                                                                    _____, KC_4,  KC_5,     KC_6,        KC_DOT,    _____,
+    KC_LSFT,     _____,      KC_X,       KC_T,       KC_U,       LGUI(KC_I), _____,                                      _____,           _____, KC_1,  KC_2,     KC_3,        KC_BSPACE, _____,
+    MO(SPS_NAV), _____,      _____,      LGUI(KC_Z), LGUI(KC_Y),                                                                                 _____, _____,    _____,       _____,     MO(SPS_NAV),
+                                                                             _____,            TO(SPS_DEFAULT),  _____,  _____,
+                                                                                               _____,            _____,
+                                                                 KC_LGUI,    KC_DEL,           KC_SAVE,          KC_TAB, KC_ENTER,        KC_0
   ),
-
 };
-
 
 // https://docs.qmk.fm/#/feature_rgb_matrix
 
@@ -354,7 +338,6 @@ extern rgb_config_t rgb_matrix_config;
     GOLD   : Multi (Ctrl + A)
     CYAN   : Layers
 */
-
 #define C_LTRS   HSV_BLUE
 #define C_NUMS   HSV_PURPLE
 #define C_SPCL   HSV_GREEN
@@ -368,77 +351,70 @@ extern rgb_config_t rgb_matrix_config;
 
 /* Color Template
   [X] = {
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {________}, {________}, {________},
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {________}, {________}, {________},
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {________}, {________}, {________},
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {________}, {________}, {________},
-    {________}, {________}, {________}, {________},                           {________}, {________}, {________}, {________},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
+    {________}, {________}, {________}, {________},                          {________}, {________}, {________}, {________},
   },
 */
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   [SPS_DEFAULT] = {
-    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},
-    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},
-    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_SPCL},
-    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_SPCL},
-    {C_LAYERS}, {C_CTRL}, {C_CTRL}, {C_CTRL},                       {C_SPCL}, {C_SPCL}, {C_SPCL}, {C_SPCL},
+    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},  {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},
+    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},  {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},
+    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},  {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_SPCL},
+    {C_LTRS},   {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS},  {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_LTRS}, {C_SPCL},
+    {C_LAYERS}, {C_CTRL}, {C_CTRL}, {C_CTRL},                      {C_SPCL}, {C_SPCL}, {C_SPCL}, {C_SPCL},
   },
-
   [SPS_NUMPAD] = {
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},
-    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {________},   {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
-    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},     {C_OTHR},   {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
-    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},     {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
-    {________}, {________}, {________}, {________},                           {C_SPCL},   {________}, {________}, {________},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},
+    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {________},  {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
+    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {C_OTHR},   {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
+    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
+    {________}, {________}, {________}, {________},                          {C_SPCL},   {________}, {________}, {________},
   },
-
   [SPS_NAV] = {
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {________}, {________}, {________},
-    {________}, {C_NAV_B},  {C_NAV},    {C_NAV_B},  {C_NAV_B},    {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {________},
-    {C_OTHR},   {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV_B},    {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},    {C_CTRL},
-    {C_OTHR},   {C_OTHR},   {C_OTHR},   {C_OTHR},   {C_NAV_B},    {________}, {C_SPCL},   {C_SPCL},   {________}, {________},
-    {________}, {________}, {________}, {________},                           {________}, {________}, {C_OTHR},   {C_OTHR},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
+    {________}, {C_NAV_B},  {C_NAV},    {C_NAV_B},  {C_NAV_B},   {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {________},
+    {C_OTHR},   {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV_B},   {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},    {C_CTRL},
+    {C_OTHR},   {C_OTHR},   {C_OTHR},   {C_OTHR},   {C_NAV_B},   {________}, {C_SPCL},   {C_SPCL},   {________}, {________},
+    {________}, {________}, {________}, {________},                          {________}, {________}, {C_OTHR},   {C_OTHR},
   },
-
   [SPS_FUNC] = {
-    {________}, {________},      {________},      {________},      {________},   {________}, {________}, {________}, {________}, {________},
-    {________}, {________},      {________},      {________},      {________},   {________}, {C_FUNC},   {C_FUNC},   {C_FUNC},   {C_FUNC},
-    {________}, {HSV_GOLDENROD}, {HSV_GOLDENROD}, {HSV_GOLDENROD}, {________},   {________}, {C_FUNC},   {C_FUNC},   {C_FUNC},   {C_FUNC},
-    {________}, {HSV_TURQUOISE}, {HSV_TURQUOISE}, {HSV_TURQUOISE}, {________},   {________}, {C_FUNC},   {C_FUNC},   {C_FUNC},   {C_FUNC},
-    {________}, {________},      {________},      {________},                                {________}, {________}, {________}, {________},
+    {________}, {________},      {________},      {________},      {________},  {________}, {________}, {________}, {________}, {________},
+    {________}, {________},      {________},      {________},      {________},  {________}, {C_FUNC},   {C_FUNC},   {C_FUNC},   {C_FUNC},
+    {________}, {HSV_GOLDENROD}, {HSV_GOLDENROD}, {HSV_GOLDENROD}, {________},  {________}, {C_FUNC},   {C_FUNC},   {C_FUNC},   {C_FUNC},
+    {________}, {HSV_TURQUOISE}, {HSV_TURQUOISE}, {HSV_TURQUOISE}, {________},  {________}, {C_FUNC},   {C_FUNC},   {C_FUNC},   {C_FUNC},
+    {________}, {________},      {________},      {________},                               {________}, {________}, {________}, {________},
   },
-
   [SPS_AUDACITY] = {
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {________}, {________}, {________},
-    {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},    {________}, {C_NAV_B},  {C_NAV},    {C_NAV_B},  {________},
-    {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},    {________}, {C_NAV},    {C_NAV},    {C_NAV},    {________},
-    {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},  {________},   {________}, {________}, {________}, {________}, {________},
-    {________}, {HSV_RED},  {________}, {________},                           {________}, {________}, {________}, {________},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
+    {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},   {________}, {C_NAV_B},  {C_NAV},    {C_NAV_B},  {________},
+    {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},   {________}, {C_NAV},    {C_NAV},    {C_NAV},    {________},
+    {HSV_RED},  {HSV_RED},  {HSV_RED},  {HSV_RED},  {________},  {________}, {________}, {________}, {________}, {________},
+    {________}, {HSV_RED},  {________}, {________},                          {________}, {________}, {________}, {________},
   },
-
   [SPS_GIMP] = {
-    {________}, {________}, {________}, {________}, {________},   {________}, {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},
-    {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {________},   {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
-    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},     {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
-    {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},     {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
-    {________}, {________}, {C_SPCL},   {C_SPCL},                             {________}, {________}, {________}, {________},
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},
+    {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {________},  {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
+    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
+    {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
+    {________}, {________}, {C_SPCL},   {C_SPCL},                            {________}, {________}, {________}, {________},
   },
-
 };
 
-
 /*
-* ,----------------------------------.  ,----------------------------------.
-* |  28  |  27  |  26  |  25  |  24  |  |   0  |   1  |   2  |   3  |   4  |
-* |------+------+------+------+------|  |------+------+------+------+------|
-* |  33  |  32  |  31  |  30  |  29  |  |   5  |   6  |   7  |   8  |   9  |
-* |------+------+------+------+------|  |------+------+------+------+------|
-* |  38  |  37  |  36  |  35  |  34  |  |  10  |  11  |  12  |  13  |  14  |
-* |------+------+------+------+------|  |------+------+------+------+------|
-* |  43  |  42  |  41  |  40  |  39  |  |  15  |  16  |  17  |  18  |  19  |
-* |------+------+------+------+------'  `------+------+------+------+------'
-* |  47  |  46  |  45  |  44  |                |  20  |  21  |  22  |  23  |
-* `---------------------------'                `---------------------------'
+* ,----------------------------------. ,----------------------------------.
+* |  28  |  27  |  26  |  25  |  24  | |   0  |   1  |   2  |   3  |   4  |
+* |------+------+------+------+------| |------+------+------+------+------|
+* |  33  |  32  |  31  |  30  |  29  | |   5  |   6  |   7  |   8  |   9  |
+* |------+------+------+------+------| |------+------+------+------+------|
+* |  38  |  37  |  36  |  35  |  34  | |  10  |  11  |  12  |  13  |  14  |
+* |------+------+------+------+------| |------+------+------+------+------|
+* |  43  |  42  |  41  |  40  |  39  | |  15  |  16  |  17  |  18  |  19  |
+* |------+------+------+------+------' `------+------+------+------+------'
+* |  47  |  46  |  45  |  44  |               |  20  |  21  |  22  |  23  |
+* `---------------------------'               `---------------------------'
 */
 void skc(int layer, int idx, int key) { // set_key_color
   HSV hsv = {
@@ -456,11 +432,11 @@ void skc(int layer, int idx, int key) { // set_key_color
 }
 
 void set_layer_color(int l) { // l : layer
-    skc(l, 0,28);skc(l, 1,27);skc(l, 2,26);skc(l, 3,25);skc(l, 4,24);  skc(l, 5, 0);skc(l, 6, 1);skc(l, 7, 2);skc(l, 8, 3);skc(l, 9, 4);
-    skc(l,10,33);skc(l,11,32);skc(l,12,31);skc(l,13,30);skc(l,14,29);  skc(l,15, 5);skc(l,16, 6);skc(l,17, 7);skc(l,18, 8);skc(l,19, 9);
-    skc(l,20,38);skc(l,21,37);skc(l,22,36);skc(l,23,35);skc(l,24,34);  skc(l,25,10);skc(l,26,11);skc(l,27,12);skc(l,28,13);skc(l,29,14);
-    skc(l,30,43);skc(l,31,42);skc(l,32,41);skc(l,33,40);skc(l,34,39);  skc(l,35,15);skc(l,36,16);skc(l,37,17);skc(l,38,18);skc(l,39,19);
-    skc(l,40,47);skc(l,41,46);skc(l,42,45);skc(l,43,44);                            skc(l,44,20);skc(l,45,21);skc(l,46,22);skc(l,47,23);
+    skc(l, 0,28);skc(l, 1,27);skc(l, 2,26);skc(l, 3,25);skc(l, 4,24); skc(l, 5, 0);skc(l, 6, 1);skc(l, 7, 2);skc(l, 8, 3);skc(l, 9, 4);
+    skc(l,10,33);skc(l,11,32);skc(l,12,31);skc(l,13,30);skc(l,14,29); skc(l,15, 5);skc(l,16, 6);skc(l,17, 7);skc(l,18, 8);skc(l,19, 9);
+    skc(l,20,38);skc(l,21,37);skc(l,22,36);skc(l,23,35);skc(l,24,34); skc(l,25,10);skc(l,26,11);skc(l,27,12);skc(l,28,13);skc(l,29,14);
+    skc(l,30,43);skc(l,31,42);skc(l,32,41);skc(l,33,40);skc(l,34,39); skc(l,35,15);skc(l,36,16);skc(l,37,17);skc(l,38,18);skc(l,39,19);
+    skc(l,40,47);skc(l,41,46);skc(l,42,45);skc(l,43,44);                           skc(l,44,20);skc(l,45,21);skc(l,46,22);skc(l,47,23);
 }
 
 void rgb_matrix_indicators_user(void) {
@@ -518,7 +494,6 @@ void sps_led_101(void) { ergodox_right_led_1_on();  ergodox_right_led_2_off(); e
 void sps_led_110(void) { ergodox_right_led_1_on();  ergodox_right_led_2_on();  ergodox_right_led_3_off(); }
 void sps_led_111(void) { ergodox_right_led_1_on();  ergodox_right_led_2_on();  ergodox_right_led_3_on();  }
 
-
 uint32_t layer_state_set_user(uint32_t state) {
     ergodox_board_led_off();
     switch (biton32(state)) {
@@ -574,7 +549,6 @@ uint32_t layer_state_set_user(uint32_t state) {
         break;
     }
     return state;
-
 };
 
 void keyboard_post_init_user(void) {
