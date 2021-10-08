@@ -9,52 +9,35 @@
 #define SPS_AUDACITY 14
 #define SPS_GIMP 15
 
-
 // Key Codes
 #define _____ KC_NO
-
-#define KC_MAC_UNDO  LGUI(KC_Z)
-#define KC_MAC_CUT   LGUI(KC_X)
-#define KC_MAC_COPY  LGUI(KC_C)
-#define KC_MAC_PASTE LGUI(KC_V)
-#define KC_PC_UNDO   LCTL(KC_Z)
-#define KC_PC_CUT    LCTL(KC_X)
-#define KC_PC_COPY   LCTL(KC_C)
-#define KC_PC_PASTE  LCTL(KC_V)
-#define ES_LESS_MAC  KC_GRAVE
-#define ES_GRTR_MAC  LSFT(KC_GRAVE)
-#define ES_BSLS_MAC  ALGR(KC_6)
-#define NO_PIPE_ALT  KC_GRAVE
-#define NO_BSLS_ALT  KC_EQUAL
-
+#define KC_SAVE      LGUI(KC_S)
 #define KC_CUT       LGUI(KC_X)
 #define KC_COPY      LGUI(KC_C)
 #define KC_PASTE     LGUI(KC_V)
 #define KC_UNDO      LGUI(KC_Z)
 #define KC_SLCT_ALL  LGUI(KC_A)
 #define KC_REDO      LSFT(LGUI(KC_Z))
-#define KC_SFT_CAP   LSFT_T(KC_CAPS)
 #define KC_WIN_LEFT  LCTL(KC_LEFT)
 #define KC_WIN_RIGHT LCTL(KC_RIGHT)
 #define KC_MAC_LOCK  LGUI(LSFT(KC_L))
-
-#define KC_SAVE      LGUI(KC_S)
-
 
 // Colors
 #define HSV_BLACK 0, 0, 0
 #define ________ HSV_BLACK
 
+// Hammerspoon
+#define KC_HS_Q LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_Q))))))))
+#define KC_HS_W LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_W))))))))
+#define KC_HS_E LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_E))))))))
+#define KC_HS_R LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_R))))))))
+#define KC_HS_T LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_T))))))))
+#define KC_HS_G LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_G))))))))
+#define KC_HS_B LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_B))))))))
 
-
-enum custom_keycodes {
-  RGB_SLD = EZ_SAFE_RANGE,
-  HSV_172_255_255,
-  HSV_86_255_128,
-  HSV_27_255_255,
-  EPRM,
-};
-
+// enum custom_keycodes {
+//   HS_Q,
+// };
 
 // https://docs.qmk.fm/#/keycodes
 // https://docs.qmk.fm/#/feature_advanced_keycodes
@@ -90,7 +73,7 @@ enum custom_keycodes {
 */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* [0] Keyboard // DEFAULT
-    ,--------------------------------------------------.     ,--------------------------------------------------.
+    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
     | Caps   |  1   |  2   |  3   |  4   |  5   |TO 15 |     | TO 1 |  6   |  7   |  8   |  9   |  0   |        |
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
     | MO NUM |  Q   |  W   |  E   |  R   |  T   |ENTER |     |DELETE|  Y   |  U   |  I   |  O   |  P   | Shift  |
@@ -100,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     | Shift  |  Z   |  X   |  C   |  V   |  B   |  ␣   |     |  ⌫   |  N   |  M   |  ,<  |  .>  |  /?  | MO NUM |
     `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
       |MO NAV|MO 13 | CTRL | CMD  | ALT  | ,-------------. ,-------------. |  - _ | = +  | [ {  | ] }  |MO NAV|
-      `----------------------------------' |      |      | |      |      | `----------------------------------'
+      `----------------------------------' |      | DEF  | |      |      | `----------------------------------'
                                     ,------|------|------| |------+------+------.
                                     |BCKSPC|DELETE|      | |      |ENTER |SPACE |
                                     |  ⌫   |  ←   |------| |------|  ↵   |  ␣   |
@@ -118,17 +101,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                               KC_BSPACE, KC_DEL,       KC_ESC,           KC_ESC, KC_ENTER,       KC_SPACE
   ),
   /* [1] Special / Number Pad // NUMPAD
-    ,--------------------------------------------------.     ,--------------------------------------------------.
+    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
     |        |      |      |      |      |      | TO 0 |     | TO 2 |      |      |  /   | *    |  -   |        |
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
-    | `MO NUM|  :   |  (   |  *   |  &   |      |ENTER |     |DELETE|      |  7   |  8   |  9   |  +   |        |
+    | `MO NUM|  :   |  &   |  *   |  (   |  )   |ENTER |     |DELETE|      |  7   |  8   |  9   |  +   |        |
     |--------+------+------+------+------+------|  ↵   |     |  ←   |------+------+------+------+------+--------|
-    | Tab  ↹ |  ~   |  ^   |  %   |  $   |  `   |------|     |------|Tab  ↹|  4   |  5   |  6   |  .   |        |
+    | Tab  ↹ |  ~   |  $   |  %   |  ^   |  `   |------|     |------|Tab  ↹|  4   |  5   |  6   |  .   |        |
     |--------+------+------+------+------+------|SPACE |     |BCKSPC|------+------+------+------+------+--------|
-    |        |  \   |  #   |  @   |  !   |  |   |  ␣   |     |  ⌫   |      |  1   |  2   |  3   |  ↵   | `MO NUM|
+    |        |  \   |  !   |  @   |  #   |  |   |  ␣   |     |  ⌫   |      |  1   |  2   |  3   |  ↵   | `MO NUM|
     `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
       |      |      |      |      |      | ,-------------. ,-------------. |  -   |      |      |      |      |
-      `----------------------------------' |      |      | |      |      | `----------------------------------'
+      `----------------------------------' |      | DEF  | |      |      | `----------------------------------'
                                     ,------|------|------| |------+------+------.
                                     |      |      |      | |      |      |      |
                                     |BCKSPC|DELETE|------| |------|SPACE |  0   |
@@ -136,27 +119,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [SPS_NUMPAD] = LAYOUT_ergodox_pretty(
-    _____,          _____,     _____,   _____,       _____,        _____,     TO(SPS_DEFAULT),                           TO(SPS_NAV),     _____,  _____,       KC_KP_SLASH, KC_KP_ASTERISK, KC_KP_MINUS, _____,
-    MO(SPS_NUMPAD), KC_COLON,  KC_LPRN, KC_ASTERISK, KC_AMPERSAND, _____,     KC_ENTER,                                  KC_DEL,      _____,  KC_7,        KC_8,        KC_9,           KC_KP_PLUS,  _____,
-    KC_TAB,         KC_TILDE,  KC_CIRC, KC_PERCENT,  KC_DOLLAR,    KC_GRAVE,                                                          KC_TAB, KC_4,        KC_5,        KC_6,           KC_KP_DOT,   _____,
-    _____,          KC_BSLASH, KC_HASH, KC_AT,       KC_EXCLAIM,   KC_PIPE,   KC_SPACE,                                  KC_BSPACE,   _____,  KC_1,        KC_2,        KC_3,           KC_KP_ENTER, MO(SPS_NUMPAD),
-    _____,          _____,     _____,   _____,       _____,                                                                                   KC_KP_MINUS, _____,       _____,          _____,       _____,
-                                                                              _____,           TO(SPS_DEFAULT),  _____,  _____,
-                                                                                               _____,            _____,
-                                                                   KC_BSPACE, KC_DEL,          KC_ESC,           KC_ESC, KC_SPACE,    KC_0
+    _____,          _____,     _____,        _____,       _____,        _____,     TO(SPS_DEFAULT),                           TO(SPS_NAV),     _____,  _____,       KC_KP_SLASH, KC_KP_ASTERISK, KC_KP_MINUS, _____,
+    MO(SPS_NUMPAD), KC_COLON,  KC_AMPERSAND, KC_ASTERISK, KC_LPRN,      KC_RPRN,   KC_ENTER,                                  KC_DEL,      _____,  KC_7,        KC_8,        KC_9,           KC_KP_PLUS,  _____,
+    KC_TAB,         KC_TILDE,  KC_DOLLAR,    KC_PERCENT,  KC_CIRC,      KC_GRAVE,                                                          KC_TAB, KC_4,        KC_5,        KC_6,           KC_KP_DOT,   _____,
+    _____,          KC_BSLASH, KC_EXCLAIM,   KC_AT,       KC_HASH,      KC_PIPE,   KC_SPACE,                                  KC_BSPACE,   _____,  KC_1,        KC_2,        KC_3,           KC_KP_ENTER, MO(SPS_NUMPAD),
+    _____,          _____,     _____,        _____,       _____,                                                                                   KC_KP_MINUS, _____,       _____,          _____,       _____,
+                                                                                   _____,           TO(SPS_DEFAULT),  _____,  _____,
+                                                                                                    _____,            _____,
+                                                                   KC_BSPACE,      KC_DEL,          KC_ESC,           KC_ESC, KC_SPACE,    KC_0
   ),
   /* [2] Navigation // NAV
-    ,--------------------------------------------------.     ,--------------------------------------------------.  WU: Wheel Up
-    |        |      |      |      |      |      |TO 14 |     | TO 0 |      |      |      |      |      | LOCK   |  WD: Wheel Down
-    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|  LC: Left Click
-    |        |      |  LC  |  M↑  |  RC  | MC   |ENTER |     |DELETE| HOME |PG DWN|PG UP | END  |      |        |  RC: Right Click
-    |--------+------+------+------+------+------|  ↵   |     |  ←   |------+------+------+------+------+--------|  MC: Middle Click
-    |        | ALL  |  M←  |  M↓  |  M→  | WU   |------|     |------|  ←   |  ↓   |  ↑   |  →   | ALT  |        |
-    |--------+------+------+------+------+------|SPACE |     |BCKSPC|------+------+------+------+------+--------|
-    | SHIFT  | UNDO | CUT  | COPY |PASTE | WD   |  ␣   |     |  ⌫   |      |  - _ |  = + |      |      |        |
+    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
+    |        |      |      |      |      |      |TO 14 |     | TO 0 |      |      |      |      |      | LOCK   |  WU: Wheel Up
+    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|  WD: Wheel Down
+    |        | HS_Q | HS_W | HS_E | HS_R | HS_T |      |     |      | HOME |PG DWN|PG UP | END  |      |        |  LC: Left Click
+    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|  RC: Right Click
+    |        | ALL  |  LC  |  MC  |  RC  | HS_G |------|     |------|  ←   |  ↓   |  ↑   |  →   | ALT  |        |  MC: Middle Click
+    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
+    | SHIFT  | UNDO | CUT  | COPY |PASTE | HS_B |      |     |      |      |  - _ |  = + |      |      |        |
     `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
-      |`MO NA|      |      |BKSPC |DELETE| ,-------------. ,-------------. |ENTER |SPACE |CTRL ←|CTRL →|`MO NA|
-      `----------------------------------' |      |      | |      |      | `----------------------------------'
+      |`MO NA|      |      |      |      | ,-------------. ,-------------. |      |      |CTRL ←|CTRL →|`MO NA|
+      `----------------------------------' |      | DEF  | |      |      | `----------------------------------'
                                     ,------|------|------| |------+------+------.
                                     |      |      |      | |      |      |      |
                                     | CTRL |      |------| |------|      | CMD  |
@@ -164,19 +147,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [SPS_NAV] = LAYOUT_ergodox_pretty(
-    _____,       _____,       _____,      _____,      _____,       _____,         TO(SPS_NUMPAD),                           TO(SPS_FUNC),     _____,   _____,     _____,    _____,       _____,        KC_MAC_LOCK,
-    _____,       _____,       KC_MS_BTN1, KC_MS_UP,   KC_MS_BTN2,  KC_MS_BTN3,    KC_ENTER,                                 KC_DEL,       KC_HOME, KC_PGDOWN, KC_PGUP,  KC_END,      _____,        _____,
-    _____,       KC_SLCT_ALL, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_MS_WH_UP,                                                           KC_LEFT, KC_DOWN,   KC_UP,    KC_RIGHT,    KC_LALT,      _____,
-    KC_LSFT,     KC_UNDO,     KC_CUT,     KC_COPY,    KC_PASTE,    KC_MS_WH_DOWN, KC_SPACE,                                 KC_BSPACE,    _____,   KC_MINUS,  KC_EQUAL, _____,       _____,        _____,
-    MO(SPS_NAV), _____,       _____,      KC_BSPACE,  KC_DEL,                                                                                      KC_ENTER,  KC_SPACE, KC_WIN_LEFT, KC_WIN_RIGHT, MO(SPS_NAV),
-                                                                                  _____,          TO(SPS_DEFAULT),  _____,  _____,
-                                                                                                  _____,            _____,
-                                                                   KC_LCTRL,      _____,          KC_ESC,           KC_ESC, _____,        KC_LGUI
+    _____,       _____,       _____,      _____,      _____,       _____,    TO(SPS_NUMPAD),                           TO(SPS_FUNC), _____,   _____,     _____,    _____,       _____,        KC_MAC_LOCK,
+    _____,       KC_HS_Q,     KC_HS_W,    KC_HS_E,    KC_HS_R,     KC_HS_T,  _____,                                    _____,        KC_HOME, KC_PGDOWN, KC_PGUP,  KC_END,      _____,        _____,
+    _____,       KC_SLCT_ALL, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN2,  KC_HS_G,                                                          KC_LEFT, KC_DOWN,   KC_UP,    KC_RIGHT,    KC_LALT,      _____,
+    KC_LSFT,     KC_UNDO,     KC_CUT,     KC_COPY,    KC_PASTE,    KC_HS_B,  _____,                                    _____,        _____,   KC_MINUS,  KC_EQUAL, _____,       _____,        _____,
+    MO(SPS_NAV), _____,       _____,      _____,      _____,                                                                         _____,     _____,    KC_WIN_LEFT, KC_WIN_RIGHT, MO(SPS_NAV),
+                                                                             _____,          TO(SPS_DEFAULT),  _____,  _____,
+                                                                                             _____,            _____,
+                                                                   KC_LCTRL, _____,          KC_ESC,           KC_ESC, _____,        KC_LGUI
   ),
   /* [3] Functional // FUNC
-    ,--------------------------------------------------.     ,--------------------------------------------------.
-    |        |      |      |      |      |      | TO 2 |     |TO 14 |      |      |      |      |      |        | A BAK: Audio Back
-    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------| A FOR: Audio Forward
+    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
+    |        |      |      |      |      |      | TO 2 |     |TO 14 |      |      |      |      |      |        |  A BAK: Audio Back
+    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|  A FOR: Audio Forward
     |        |      |      |      |      |      |      |     |      |  F1  |  F2  |  F3  |  F4  |      |        |
     |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
     |        |      |VOL ↓ | MUTE |VOL ↑ |      |------|     |------|  F5  |  F6  |  F7  |  F8  |      |        |
@@ -184,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |        |      |A BAK | PLAY |A FOR |      |      |     |      |  F9  |  F10 |  F11 |  F12 |      |        |
     `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
       |      |`MO 13|      |      |      | ,-------------. ,-------------. |      |      |      |      |      |
-      `----------------------------------' |      |      | |      |      | `----------------------------------'
+      `----------------------------------' |      | DEF  | |      |      | `----------------------------------'
                                     ,------|------|------| |------+------+------.
                                     |      |      |      | |      |      |      |
                                     |      |      |------| |------|      |      |
@@ -202,17 +185,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     _____, _____,       _____,            _____, _____,            _____
   ),
   /* [1] Audacity // AUDACITY
-    ,--------------------------------------------------.     ,--------------------------------------------------. CSK: Cursor to Select
-    |        |      |      |      |      |      | TO 3 |     | TO 5 |      |      |      |      |      |        | SLNC: Silence
-    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------| S DEL: Split Delete
-    |  ESC   | CSK  |ZOOM +|SPLIT |      | REDO |      |     |      |      |  LC  |  M↑  |  RC  |      |        | SEL TL: Select Tool
-    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------| TME TL: Time Shift Tool
-    |  DEL   | SLNC |ZOOM -|CUR ← |CUR → | UNDO |------|     |------|      |  M←  |  M↓  |  M→  |      |        |
+    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
+    |        |      |      |      |      |      | TO 3 |     | TO 5 |      |      |      |      |      |        |  CSK: Cursor to Select
+    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|  SLNC: Silence
+    |  ESC   | CSK  |ZOOM +|SPLIT |      | REDO |      |     |      |      |  LC  |  M↑  |  RC  |      |        |  S DEL: Split Delete
+    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|  SEL TL: Select Tool
+    |  DEL   | SLNC |ZOOM -|CUR ← |CUR → | UNDO |------|     |------|      |  M←  |  M↓  |  M→  |      |        |  TME TL: Time Shift Tool
     |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
     |  S DEL |      |CLICK |SEL TL|TIMETL|      |      |     |      |      |      |      |      |      |        |
     `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
       |MO 15 |MO 13 |      |      |      | ,-------------. ,-------------. |      |      |      |      |      |
-      `----------------------------------' |      |      | |      |      | `----------------------------------'
+      `----------------------------------' |      | DEF  | |      |      | `----------------------------------'
                                     ,------|------|------| |------+------+------.
                                     |      |      |      | |      |      |      |
                                     | PLAY | SAVE |------| |------|      |      |
@@ -232,7 +215,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                         KC_SPACE, KC_SAVE,      KC_ENTER,         _____, _____,        _____
   ),
   /* [2] Gimp // GIMP
-    ,--------------------------------------------------.     ,--------------------------------------------------.
+    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
     |        |      |      |      |      |      | TO 1 |     |TO 13 |      |      |  /   | *    |  -   |        |
     |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
     | ESC    | FLIP | SCLE | CPKR | CSLT |      |      |     |      |      |  7   |  8   |  9   |  +   |        |
@@ -242,7 +225,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     | SHIFT  |      | SWAP | TEXT | FUZY |INVRT |      |     |      |      |  1   |  2   |  3   |BKSPC |        |
     `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
       |MO 15 |      |      | UNDO | REDO | ,-------------. ,-------------. |      |      |      |      |MO 15 |
-      `----------------------------------' |      |      | |      |      | `----------------------------------'
+      `----------------------------------' |      | DEF  | |      |      | `----------------------------------'
                                     ,------|------|------| |------+------+------.
                                     |      |      |      | |      |      |      |
                                     | CMD  | DEL  |------| |------|   ↵  |  0   |
@@ -265,43 +248,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool suspended = false;
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-    case HSV_172_255_255:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_sethsv(172,255,255);
-        #endif
-      }
-      return false;
-    case HSV_86_255_128:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_sethsv(86,255,128);
-        #endif
-      }
-      return false;
-    case HSV_27_255_255:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_enable();
-          rgblight_mode(1);
-          rgblight_sethsv(27,255,255);
-        #endif
-      }
-      return false;
-  }
-  return true;
-}
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//   switch (keycode) {
+//     // case HS_Q:
+//     //   // record->event.pressed ? hs_start(KC_Q) : hs_stop(KC_Q);
+//     //   return false;
+//   }
+//   return true;
+// }
 
 /* Layer Colors
   AZURE      	132,	102,	255
@@ -368,16 +322,16 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   },
   [SPS_NUMPAD] = {
     {________}, {________}, {________}, {________}, {________},  {________}, {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},
-    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {________},  {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
+    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
     {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {C_OTHR},   {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
     {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
     {________}, {________}, {________}, {________},                          {C_SPCL},   {________}, {________}, {________},
   },
   [SPS_NAV] = {
     {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
-    {________}, {C_NAV_B},  {C_NAV},    {C_NAV_B},  {C_NAV_B},   {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {________},
-    {C_OTHR},   {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV_B},   {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},    {C_CTRL},
-    {C_OTHR},   {C_OTHR},   {C_OTHR},   {C_OTHR},   {C_NAV_B},   {________}, {C_SPCL},   {C_SPCL},   {________}, {________},
+    {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},     {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {________},
+    {C_MUTLI},  {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {C_NAV},     {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},    {C_CTRL},
+    {C_MUTLI},  {C_MUTLI},  {C_MUTLI},  {C_MUTLI},  {C_NAV},     {________}, {C_SPCL},   {C_SPCL},   {________}, {________},
     {________}, {________}, {________}, {________},                          {________}, {________}, {C_OTHR},   {C_OTHR},
   },
   [SPS_FUNC] = {
