@@ -11,6 +11,8 @@ enum layers {
   L_FUNC,
   L_AUD,
   L_GIMP,
+  L_G_OW,
+  LAYER_MAX
 };
 
 // Key Codes
@@ -84,9 +86,14 @@ const uint32_t PROGMEM unicode_map[] = {
   [TADA]  = 0x1F389,
 };
 
-// enum custom_keycodes {
-//   HS_Q,
-// };
+enum custom_keycodes {
+  L_PREV = EZ_SAFE_RANGE,
+  L_NEXT,
+  L_MAIN,
+
+  M_GLHF, // glhf
+  M_GG, // gg, Good Game!
+};
 
 // https://docs.qmk.fm/#/keycodes
 // https://docs.qmk.fm/#/feature_advanced_keycodes
@@ -140,14 +147,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [L_DEF] = LAYOUT_ergodox_pretty(
-    KC_CAPS,   KC_1,       KC_2,     KC_3,    KC_4,      KC_5,   TO(L_GIMP),  TO(L_NUM), KC_6,     KC_7,     KC_8,        KC_9,        KC_0,        _____,
-    MO(L_NUM), KC_Q,       KC_W,     KC_E,    KC_R,      KC_T,   KC_ENTER,    KC_DEL,    KC_Y,     KC_U,     KC_I,        KC_O,        KC_P,        MO(L_EMOJI),
-    KC_TAB,    KC_A,       KC_S,     KC_D,    KC_F,      KC_G,                           KC_H,     KC_J,     KC_K,        KC_L,        KC_SCOLON,   KC_QUOTE,
-    KC_LSFT,   KC_Z,       KC_X,     KC_C,    KC_V,      KC_B,   KC_SPACE,    KC_BSPACE, KC_N,     KC_M,     KC_COMMA,    KC_DOT,      KC_SLASH,    MO(L_NUM),
-    MO(L_NAV), MO(L_FUNC), KC_LCTRL, KC_LGUI, KC_LALT,                                   KC_MINUS, KC_EQUAL, KC_LBRACKET, KC_RBRACKET, MO(L_NAV),
-                                                         _____,  TO(L_DEF),   _____,     _____,
-                                                                 _____,       _____,
-                                              KC_BSPACE, KC_DEL, KC_ESC,                 KC_ESC,   KC_ENTER, KC_SPACE
+    KC_CAPS,   KC_1,       KC_2,     KC_3,    KC_4,      KC_5,   L_PREV,   /**/ L_NEXT,    KC_6,     KC_7,     KC_8,        KC_9,        KC_0,        _____,
+    MO(L_NUM), KC_Q,       KC_W,     KC_E,    KC_R,      KC_T,   KC_ENTER, /**/ KC_DEL,    KC_Y,     KC_U,     KC_I,        KC_O,        KC_P,        MO(L_EMOJI),
+    KC_TAB,    KC_A,       KC_S,     KC_D,    KC_F,      KC_G,             /**/            KC_H,     KC_J,     KC_K,        KC_L,        KC_SCOLON,   KC_QUOTE,
+    KC_LSFT,   KC_Z,       KC_X,     KC_C,    KC_V,      KC_B,   KC_SPACE, /**/ KC_BSPACE, KC_N,     KC_M,     KC_COMMA,    KC_DOT,      KC_SLASH,    MO(L_NUM),
+    MO(L_NAV), MO(L_FUNC), KC_LCTRL, KC_LGUI, KC_LALT,                     /**/            KC_MINUS, KC_EQUAL, KC_LBRACKET, KC_RBRACKET, MO(L_NAV),
+                                                         _____,  L_MAIN,   /**/ _____,     _____,
+                                                                 _____,    /**/ _____,
+                                              KC_BSPACE, KC_DEL, KC_ESC,   /**/            KC_ESC,   KC_ENTER, KC_SPACE
   ),
   /* [L_NUM] Special / Number Pad // NUMPAD
     ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
@@ -168,14 +175,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [L_NUM] = LAYOUT_ergodox_pretty(
-    _____,     _____,     _____,        _____,       _____,     _____,    TO(L_DEF), /**/ TO(L_EMOJI), _____,    _____,       KC_KP_SLASH, KC_KP_ASTERISK, KC_KP_MINUS, _____,
-    MO(L_NUM), KC_COLON,  KC_AMPERSAND, KC_ASTERISK, KC_LPRN,   KC_RPRN,  KC_ENTER,  /**/ KC_DEL,      _____,    KC_7,        KC_8,        KC_9,           KC_KP_PLUS,  _____,
-    KC_TAB,    KC_TILDE,  KC_DOLLAR,    KC_PERCENT,  KC_CIRC,   KC_GRAVE,            /**/              KC_TAB,   KC_4,        KC_5,        KC_6,           KC_KP_DOT,   _____,
-    _____,     KC_BSLASH, KC_EXCLAIM,   KC_AT,       KC_HASH,   KC_PIPE,  KC_SPACE,  /**/ KC_BSPACE,   _____,    KC_1,        KC_2,        KC_3,           KC_KP_ENTER, MO(L_NUM),
-    _____,     _____,     _____,        _____,       _____,                          /**/                        KC_KP_MINUS, _____,       _____,          _____,       _____,
-                                                                _____,    TO(L_DEF), /**/ _____,       _____,
-                                                                          _____,     /**/ _____,
-                                                     KC_BSPACE, KC_DEL,   KC_ESC,    /**/ KC_ESC,      KC_SPACE, KC_0
+    _____,     _____,     _____,        _____,       _____,     _____,    L_PREV,   /**/ L_NEXT,    _____,    _____,       KC_KP_SLASH, KC_KP_ASTERISK, KC_KP_MINUS, _____,
+    MO(L_NUM), KC_COLON,  KC_AMPERSAND, KC_ASTERISK, KC_LPRN,   KC_RPRN,  KC_ENTER, /**/ KC_DEL,    _____,    KC_7,        KC_8,        KC_9,           KC_KP_PLUS,  _____,
+    KC_TAB,    KC_TILDE,  KC_DOLLAR,    KC_PERCENT,  KC_CIRC,   KC_GRAVE,           /**/            KC_TAB,   KC_4,        KC_5,        KC_6,           KC_KP_DOT,   _____,
+    _____,     KC_BSLASH, KC_EXCLAIM,   KC_AT,       KC_HASH,   KC_PIPE,  KC_SPACE, /**/ KC_BSPACE, _____,    KC_1,        KC_2,        KC_3,           KC_KP_ENTER, MO(L_NUM),
+    _____,     _____,     _____,        _____,       _____,                         /**/                      KC_KP_MINUS, _____,       _____,          _____,       _____,
+                                                                _____,    L_MAIN,   /**/ _____,     _____,
+                                                                          _____,    /**/ _____,
+                                                     KC_BSPACE, KC_DEL,   KC_ESC,   /**/ KC_ESC,    KC_SPACE, KC_0
   ),
 
   /* [L_EMOJI] Emoji and Unicode Characters
@@ -192,19 +199,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       `----------------------------------' |      | DEF  | |      |      | `----------------------------------'
                                     ,------|------|------| |------+------+------.
                                     |      |      |      | |      |      |      |
-                                    |      |      |------| |------|      |Shift |
+                                    |BCKSPC|      |------| |------|      |Shift |
                                     |      |      |      | |      |      |      |
                                     `--------------------' `--------------------'
   */
   [L_EMOJI] = LAYOUT_ergodox_pretty(
-    _____, _____,          _____,           _____,          _____,           _____,           TO(L_NUM), /**/ TO(L_NAV),   _____,  _____, _____, _____, _____, _____,
-    _____, _____,          XP(CLAP, RAISE), XP(TADA, PRTY), XP(TUP, UARW),   XP(CAKE, CAKE),  _____,     /**/ _____,       _____,  _____, _____, _____, _____, MO(L_EMOJI),
-    _____, XP(HPPY, KISS), XP(SAD, CRY),    XP(TONG, HAHA), XP(LOL, ROFL),   XP(RHRT, PHRT),             /**/              _____,  _____, _____, _____, _____, _____,
-    _____, _____,          _____,           _____,          XP(TDOWN, DARW), XP(RNBW, PEACE), _____,     /**/ _____,       _____,  _____, _____, _____, _____, _____,
-    _____, _____,          _____,           _____,          _____,                                       /**/                      _____, _____, _____, _____, _____,
-                                                                             _____,           TO(L_DEF), /**/ _____, _____,
-                                                                                              _____,     /**/ _____,
-                                                            _____,           _____,           _____,     /**/ _____, _____, KC_LSFT
+    _____,   _____,          _____,           _____,          _____,           _____,           L_PREV, /**/ L_NEXT, _____, _____, _____, _____, _____, _____,
+    _____,   _____,          XP(CLAP, RAISE), XP(TADA, PRTY), XP(TUP, UARW),   XP(CAKE, CAKE),  _____,  /**/ _____,  _____, _____, _____, _____, _____, MO(L_EMOJI),
+    _____,   XP(HPPY, KISS), XP(SAD, CRY),    XP(TONG, HAHA), XP(LOL, ROFL),   XP(RHRT, PHRT),          /**/         _____, _____, _____, _____, _____, _____,
+    KC_LSFT, _____,          _____,           _____,          XP(TDOWN, DARW), XP(RNBW, PEACE), _____,  /**/ _____,  _____, _____, _____, _____, _____, _____,
+    _____,   _____,          _____,           _____,          _____,                                    /**/                _____, _____, _____, _____, _____,
+                                                                               _____,           L_MAIN, /**/ _____,  _____,
+                                                                                                _____,  /**/ _____,
+                                                              KC_BSPACE,       _____,           _____,  /**/ _____,  _____, KC_LSFT
   ),
 
   /* [L_NAV] Navigation // NAV
@@ -226,14 +233,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [L_NAV] = LAYOUT_ergodox_pretty(
-    _____,       _____,       _____,      _____,      _____,      _____,   TO(L_NUM), /**/ TO(L_FUNC), _____,   _____,     _____,    _____,       _____,        KC_MAC_LOCK,
-    _____,       KC_HS_Q,     KC_HS_W,    KC_HS_E,    KC_HS_R,    KC_HS_T, _____,     /**/ _____,      KC_HOME, KC_PGDOWN, KC_PGUP,  KC_END,      _____,        _____,
-    _____,       KC_SLCT_ALL, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN2, KC_HS_G,            /**/             KC_LEFT, KC_DOWN,   KC_UP,    KC_RIGHT,    KC_LALT,      _____,
-    KC_LSFT,     KC_UNDO,     KC_CUT,     KC_COPY,    KC_PASTE,   KC_HS_B, _____,     /**/ _____,      _____,   KC_MINUS,  KC_EQUAL, _____,       _____,        _____,
-    MO(L_NAV),   _____,       _____,      _____,      _____,                          /**/             _____,              _____,    KC_WIN_LEFT, KC_WIN_RIGHT, MO(L_NAV),
-                                                                  _____,   TO(L_DEF), /**/ _____,      _____,
-                                                                           _____,     /**/ _____,
-                                                      KC_LCTRL,   _____,   KC_ESC,    /**/ KC_ESC,     _____,   KC_LGUI
+    _____,       _____,       _____,      _____,      _____,      _____,   L_PREV, /**/ L_NEXT, _____,   _____,     _____,    _____,       _____,        KC_MAC_LOCK,
+    _____,       KC_HS_Q,     KC_HS_W,    KC_HS_E,    KC_HS_R,    KC_HS_T, _____,  /**/ _____,  KC_HOME, KC_PGDOWN, KC_PGUP,  KC_END,      _____,        _____,
+    _____,       KC_SLCT_ALL, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN2, KC_HS_G,         /**/         KC_LEFT, KC_DOWN,   KC_UP,    KC_RIGHT,    KC_LALT,      _____,
+    KC_LSFT,     KC_UNDO,     KC_CUT,     KC_COPY,    KC_PASTE,   KC_HS_B, _____,  /**/ _____,  _____,   KC_MINUS,  KC_EQUAL, _____,       _____,        _____,
+    MO(L_NAV),   _____,       _____,      _____,      _____,                       /**/         _____,              _____,    KC_WIN_LEFT, KC_WIN_RIGHT, MO(L_NAV),
+                                                                  _____,   L_MAIN, /**/ _____,  _____,
+                                                                           _____,  /**/ _____,
+                                                      KC_LCTRL,   _____,   KC_ESC, /**/ KC_ESC, _____,   KC_LGUI
   ),
   /* [L_FUNC] Functional // FUNC
     ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
@@ -254,14 +261,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [L_FUNC] = LAYOUT_ergodox_pretty(
-    _____, _____,      _____,   _____,   _____,   _____, TO(L_NAV),            /**/ TO(L_AUD), _____, _____, _____,  _____,  _____,  _____,
-    _____, _____,      _____,   _____,   _____,   _____, _____,                /**/ _____,     _____, KC_F1, KC_F2,  KC_F3,  KC_F4,  _____,
-    _____, _____,      KC_VOLD, KC_MUTE, KC_VOLU, _____,                       /**/            _____, KC_F5, KC_F6,  KC_F7,  KC_F8,  _____,
-    _____, _____,      KC_MPRV, KC_MPLY, KC_MNXT, _____, _____,                /**/ _____,     _____, KC_F9, KC_F10, KC_F11, KC_F12, _____,
-    _____, MO(L_FUNC), _____,   _____,   _____,                                /**/                   _____, _____,  _____,  _____,  _____,
-                                                         _____,     TO(L_DEF), /**/ _____,     _____,
-                                                                    _____,     /**/ _____,
-                                                  _____, _____,     _____,     /**/ _____,     _____, _____
+    _____, _____,      _____,   _____,   _____,   _____, L_PREV, /**/ L_NEXT, _____, _____, _____,  _____,  _____,  _____,
+    _____, _____,      _____,   _____,   _____,   _____, _____,  /**/ _____,  _____, KC_F1, KC_F2,  KC_F3,  KC_F4,  _____,
+    _____, _____,      KC_VOLD, KC_MUTE, KC_VOLU, _____,         /**/         _____, KC_F5, KC_F6,  KC_F7,  KC_F8,  _____,
+    _____, _____,      KC_MPRV, KC_MPLY, KC_MNXT, _____, _____,  /**/ _____,  _____, KC_F9, KC_F10, KC_F11, KC_F12, _____,
+    _____, MO(L_FUNC), _____,   _____,   _____,                  /**/                _____, _____,  _____,  _____,  _____,
+                                                  _____, L_MAIN, /**/ _____,  _____,
+                                                         _____,  /**/ _____,
+                                         _____,   _____, _____,  /**/ _____,  _____, _____
   ),
   /* [L_AUD] Audacity // AUDACITY
     ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
@@ -284,14 +291,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     Notes: Move cursor > and cursor < to f and d location. move time and sel tool to v and c maybe.
   */
   [L_AUD] = LAYOUT_ergodox_pretty(
-    _____,            _____,            _____,      _____,      _____,  _____,    TO(L_FUNC),            /**/ TO(L_GIMP), _____, _____,      _____,      _____,       _____, _____,
-    KC_ESC,           LCTL(LSFT(KC_K)), LGUI(KC_1), LGUI(KC_I), _____,  KC_REDO,  _____,                 /**/ _____,      _____, KC_MS_BTN1, KC_MS_UP,   KC_MS_BTN2,  _____, _____,
-    KC_DELETE,        LGUI(KC_L),       LGUI(KC_3), KC_COMMA,   KC_DOT, KC_UNDO,                         /**/             _____, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _____, _____,
-    LALT(LGUI(KC_K)), _____,            KC_MS_BTN1, KC_F1,      KC_F5,  _____,    _____,                 /**/ _____,      _____, _____,      _____,      _____,       _____, _____,
-    MO(L_NAV),        MO(L_FUNC),       _____,      _____,      _____,                                   /**/                    _____,      _____,      _____,       _____, _____,
-                                                                                  _____,      TO(L_DEF), /**/ _____,      _____,
-                                                                                              _____,     /**/ _____,
-                                                                        KC_SPACE, KC_SAVE,    KC_ENTER,  /**/ _____,      _____, _____
+    _____,            _____,            _____,      _____,      _____,    _____,   L_PREV,   /**/ L_NEXT, _____, _____,      _____,      _____,       _____, _____,
+    KC_ESC,           LCTL(LSFT(KC_K)), LGUI(KC_1), LGUI(KC_I), _____,    KC_REDO, _____,    /**/ _____,  _____, KC_MS_BTN1, KC_MS_UP,   KC_MS_BTN2,  _____, _____,
+    KC_DELETE,        LGUI(KC_L),       LGUI(KC_3), KC_COMMA,   KC_DOT,   KC_UNDO,           /**/         _____, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _____, _____,
+    LALT(LGUI(KC_K)), _____,            KC_MS_BTN1, KC_F1,      KC_F5,    _____,   _____,    /**/ _____,  _____, _____,      _____,      _____,       _____, _____,
+    MO(L_NAV),        MO(L_FUNC),       _____,      _____,      _____,                       /**/                _____,      _____,      _____,       _____, _____,
+                                                                          _____,   L_MAIN,   /**/ _____,  _____,
+                                                                                   _____,    /**/ _____,
+                                                                KC_SPACE, KC_SAVE, KC_ENTER, /**/ _____,  _____, _____
   ),
   /* [L_GIMP] Gimp // GIMP
     ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
@@ -312,14 +319,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     `--------------------' `--------------------'
   */
   [L_GIMP] = LAYOUT_ergodox_pretty(
-    _____,      _____,      _____,      _____,      _____,      _____,      TO(L_AUD), /**/ TO(L_DEF), _____,    _____, KC_SLASH, KC_ASTERISK, KC_MINUS,  _____,
-    KC_ESC,     LSFT(KC_L), LSFT(KC_S), KC_O,       LSFT(KC_O), _____,      _____,     /**/ _____,     _____,    KC_7,  KC_8,     KC_9,        KC_PLUS,   _____,
-    LGUI(KC_A), LSFT(KC_R), KC_M,       LSFT(KC_B), KC_R,       KC_F,                  /**/            _____,    KC_4,  KC_5,     KC_6,        KC_DOT,    _____,
-    KC_LSFT,    _____,      KC_X,       KC_T,       KC_U,       LGUI(KC_I), _____,     /**/ _____,     _____,    KC_1,  KC_2,     KC_3,        KC_BSPACE, _____,
-    MO(L_NAV),  _____,      _____,      LGUI(KC_Z), LGUI(KC_Y),                        /**/                      _____, _____,    _____,       _____,     MO(L_NAV),
-                                                                _____,      TO(L_DEF), /**/ _____,     _____,
-                                                                            _____,     /**/ _____,
-                                                    KC_LGUI,    KC_DEL,     KC_SAVE,   /**/ KC_TAB,    KC_ENTER, KC_0
+    _____,      _____,      _____,      _____,      _____,      _____,      L_PREV,  /**/ L_NEXT, _____,    _____, KC_SLASH, KC_ASTERISK, KC_MINUS,  _____,
+    KC_ESC,     LSFT(KC_L), LSFT(KC_S), KC_O,       LSFT(KC_O), _____,      _____,   /**/ _____,  _____,    KC_7,  KC_8,     KC_9,        KC_PLUS,   _____,
+    LGUI(KC_A), LSFT(KC_R), KC_M,       LSFT(KC_B), KC_R,       KC_F,                /**/         _____,    KC_4,  KC_5,     KC_6,        KC_DOT,    _____,
+    KC_LSFT,    _____,      KC_X,       KC_T,       KC_U,       LGUI(KC_I), _____,   /**/ _____,  _____,    KC_1,  KC_2,     KC_3,        KC_BSPACE, _____,
+    MO(L_NAV),  _____,      _____,      LGUI(KC_Z), LGUI(KC_Y),                      /**/                   _____, _____,    _____,       _____,     MO(L_NAV),
+                                                                _____,      L_MAIN,  /**/ _____,  _____,
+                                                                            _____,   /**/ _____,
+                                                    KC_LGUI,    KC_DEL,     KC_SAVE, /**/ KC_TAB, KC_ENTER, KC_0
+  ),
+  /* L_G_OW Game: Overwatch // OW
+    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
+    |        |      |      |      |      |      | PREV |     | NEXT |      |      |      |      |      |        |
+    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
+    |        |  F1  |  Q   |  W   |  R   |      | glhf |     |      |      |      |      |      |      |        |
+    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
+    | Tab  ↹ |  V   |  A   |  S   |  D   |  X   |------|     |------|      |      |      |      |      |        |
+    |--------+------+------+------+------+------|  gg  |     |      |------+------+------+------+------+--------|
+    | Shift  |  1   |  C   |  T   |  E   |  H   |      |     |      |      |      |      |      |      |        |
+    `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
+      | CTL  |  2   |      |      |      | ,-------------. ,-------------. |      |      |      |      |      |
+      `----------------------------------' | ESC  | DEF  | |      |      | `----------------------------------'
+                                    ,------|------|------| |------+------+------.
+                                    |      |      |      | |      |      |      |
+                                    |SPACE |      |------| |------|      |      |
+                                    |      |      |ENTER | |      |      |      |
+                                    `--------------------' `--------------------'
+  */
+  [L_G_OW] = LAYOUT_ergodox_pretty(
+    LGUI(KC_PSCR), _____, _____, _____, _____,    _____,    L_PREV, /**/ L_NEXT, _____, _____, _____, _____, _____, _____,
+    _____,         KC_F1, KC_Q,  KC_W,  KC_E,     KC_R,     M_GLHF, /**/ _____,  _____, _____, _____, _____, _____, _____,
+    KC_TAB,        KC_V,  KC_A,  KC_S,  KC_D,     KC_X,             /**/         _____, _____, _____, _____, _____, _____,
+    KC_LSFT,       KC_1,  KC_C,  KC_Y,  KC_H,     KC_T,     M_GG,   /**/ _____,  _____, _____, _____, _____, _____, _____,
+    KC_LCTL,       KC_2,  _____, _____, KC_N,                       /**/                _____, _____, _____, _____, _____,
+                                                  _____,    L_MAIN, /**/ _____,  _____,
+                                                            _____,  /**/ _____,
+                                        KC_SPACE, KC_ENTER, KC_ESC, /**/ _____,  _____, _____
   ),
 };
 
@@ -327,34 +362,74 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool suspended = false;
 
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//   switch (keycode) {
-//     // case HS_Q:
-//     //   // record->event.pressed ? hs_start(KC_Q) : hs_stop(KC_Q);
-//     //   return false;
-//   }
-//   return true;
-// }
+#define DELAY 50
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case L_NEXT:
+    case L_PREV:
+    case L_MAIN:
+      if (record->event.pressed) {
+        int layer = biton32(layer_state);
+        switch (keycode) {
+          case L_NEXT:
+            layer++; break;
+          case L_PREV:
+            layer--; break;
+          case L_MAIN:
+            layer = 0; break;
+        }
+        if (layer == LAYER_MAX) {
+          layer = 0;
+        } else if (layer == -1) {
+          layer = LAYER_MAX-1;
+        }
+        layer_move(layer);
+      }
+      return false;
+    case M_GLHF:
+      if (record->event.pressed) {
+        SEND_STRING(SS_TAP(X_ENTER) SS_DELAY(DELAY) "glhf" SS_DELAY(DELAY) SS_TAP(X_ENTER));
+      }
+      return false;
+    case M_GG:
+      if (record->event.pressed) {
+        (get_mods() & MOD_BIT(KC_LSFT)) == MOD_BIT(KC_LSFT)
+          ? SEND_STRING(
+              SS_UP(X_LSFT) SS_TAP(X_ENTER) SS_DELAY(DELAY)
+              "Good Game!"
+              SS_DELAY(DELAY) SS_TAP(X_ENTER) SS_DOWN(X_LSFT)
+            )
+          : SEND_STRING(
+              SS_TAP(X_ENTER) SS_DELAY(DELAY)
+              "gg"
+              SS_DELAY(DELAY) SS_TAP(X_ENTER)
+            );
+      }
+      return false;
+  }
+  return true;
+}
 
 /* Layer Colors
-  AZURE      	132,	102,	255
-  BLUE       	170,	255,	255
-  CHARTREUSE 	64, 	255,	255
-  CORAL      	11, 	176,	255
-  CYAN       	128,	255,	255
-  GOLD       	36, 	255,	255
-  GOLDENROD  	30, 	218,	218
-  GREEN      	85, 	255,	255
-  MAGENTA    	213,	255,	255
-  ORANGE     	28, 	255,	255
-  PINK       	234,	128,	255
-  PURPLE     	191,	255,	255
-  RED        	0,  	255,	255
-  SPRINGGREEN	106,	255,	255
-  TEAL       	128,	255,	128
-  TURQUOISE  	123,	90, 	112
-  WHITE      	0,  	0,  	255
-  YELLOW     	43, 	255,	255
+  AZURE       132, 102, 255
+  BLUE        170, 255, 255
+  CHARTREUSE  64,  255, 255
+  CORAL       11,  176, 255
+  CYAN        128, 255, 255
+  GOLD        36,  255, 255
+  GOLDENROD   30,  218, 218
+  GREEN       85,  255, 255
+  MAGENTA     213, 255, 255
+  ORANGE      28,  255, 255
+  PINK        234, 128, 255
+  PURPLE      191, 255, 255
+  RED         0,   255, 255
+  SPRINGGREEN 106, 255, 255
+  TEAL        128, 255, 128
+  TURQUOISE   123, 90,  112
+  WHITE       0,   0,   255
+  YELLOW      43,  255, 255
 */
 extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
@@ -398,6 +473,13 @@ extern rgb_config_t rgb_matrix_config;
 #define C_FS_4 HSV_GREEN
 #define C_FS_5 HSV_BLUE
 #define C_FS_6 HSV_PURPLE
+
+#define G_MOVE HSV_CYAN
+#define G_ATTK HSV_RED
+#define G_ACTN HSV_YELLOW
+#define G_OTHR HSV_PURPLE
+#define G_INFO HSV_WHITE
+#define G_MENU HSV_PINK
 
 /* Color Template
   [X] = {
@@ -458,6 +540,13 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
     {________}, {________}, {C_SPCL},   {C_SPCL},                            {________}, {________}, {________}, {________},
   },
+  [L_G_OW] = {
+    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
+    {G_INFO},   {G_ATTK},   {G_MOVE},   {G_ACTN},   {G_ACTN},    {________}, {________}, {________}, {________}, {________},
+    {G_ATTK},   {G_MOVE},   {G_MOVE},   {G_MOVE},   {G_ATTK},    {________}, {________}, {________}, {________}, {________},
+    {G_ACTN},   {G_INFO},   {G_INFO},   {G_ACTN},   {G_ACTN},    {________}, {________}, {________}, {________}, {________},
+    {G_ACTN},   {________}, {________}, {G_MENU},                            {________}, {________}, {________}, {________},
+  },
 };
 
 /*
@@ -498,45 +587,18 @@ void set_layer_color(int l) { // l : layer
 
 void rgb_matrix_indicators_user(void) {
   if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
-  switch (biton32(layer_state)) {
-    case L_DEF:
-      set_layer_color(L_DEF); break;
-   case L_NUM:
-      set_layer_color(L_NUM); break;
-   case L_EMOJI:
-      set_layer_color(L_EMOJI); break;
-   case L_NAV:
-      set_layer_color(L_NAV); break;
-   case L_FUNC:
-      set_layer_color(L_FUNC); break;
-   case L_AUD:
-      set_layer_color(L_AUD); break;
-   case L_GIMP:
-      set_layer_color(L_GIMP); break;
-   default:
-    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
-      rgb_matrix_set_color_all(0, 0, 0);
-    break;
-  }
+  set_layer_color(biton32(layer_state));
 }
 
 /* Layer LED Indicators
- *  0: 000
- *  1: 001
- *  2: 010
- *  3: 011
- *  4: 100
- *  5: 101
- *  6: 110
- *  7: 111
- *  8: 000
- *  9: 001
- * 10: 010
- * 11: 011
- * 12: 100
- * 13: 101
- * 14: 110
- * 15: 111
+ *  0,  8, 16, 24: 000
+ *  1,  9, 17, 25: 001
+ *  2, 10, 18, 26: 010
+ *  3, 11, 19, 27: 011
+ *  4, 12, 20, 28, 100
+ *  5, 13, 21, 29: 101
+ *  6, 14, 22, 30: 110
+ *  7, 15, 23, 31: 111
  */
 void sps_led_000(void) { ergodox_right_led_1_off(); ergodox_right_led_2_off(); ergodox_right_led_3_off(); }
 void sps_led_001(void) { ergodox_right_led_1_off(); ergodox_right_led_2_off(); ergodox_right_led_3_on();  }
@@ -551,36 +613,44 @@ uint32_t layer_state_set_user(uint32_t state) {
     ergodox_board_led_off();
     switch (biton32(state)) {
       case 0:
+      case 8:
+      case 16:
+      case 24:
         sps_led_000(); break;
       case 1:
+      case 9:
+      case 17:
+      case 25:
         sps_led_001(); break;
       case 2:
+      case 10:
+      case 18:
+      case 26:
         sps_led_010(); break;
       case 3:
+      case 11:
+      case 19:
+      case 27:
         sps_led_011(); break;
       case 4:
+      case 12:
+      case 20:
+      case 28:
         sps_led_100(); break;
       case 5:
+      case 13:
+      case 21:
+      case 29:
         sps_led_101(); break;
       case 6:
+      case 14:
+      case 22:
+      case 30:
         sps_led_110(); break;
       case 7:
-        sps_led_111(); break;
-      case 8:
-        sps_led_000(); break;
-      case  9:
-        sps_led_001(); break;
-      case 10:
-        sps_led_010(); break;
-      case 11:
-        sps_led_011(); break;
-      case 12:
-        sps_led_100(); break;
-      case 13:
-        sps_led_101(); break;
-      case 14:
-        sps_led_110(); break;
       case 15:
+      case 23:
+      case 31:
         sps_led_111(); break;
       default:
         break;
