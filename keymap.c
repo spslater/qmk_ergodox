@@ -6,7 +6,7 @@
 enum layers {
   L_DEF,
   L_NUM,
-  L_EMOJI,
+  // L_EMOJI,
   L_NAV,
   L_FUNC,
   L_AUD,
@@ -37,54 +37,54 @@ enum layers {
 #define KC_HS_G LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_G))))))))
 #define KC_HS_B LCTL(LSFT(LALT(LGUI(RCTL(RSFT(RALT(RGUI(KC_B))))))))
 
-// unicode map
-enum unicode_name {
-  HPPY, // 😊 Smiling Face with Smiling Eyes - U+1F60A
-  KISS, // 😘 Face Blowing a Kiss - U+1F618
-  SAD, // 😟 Worried Face - U+1F61F
-  CRY, // 😢 Crying Face - U+1F622
-  TONG, // 😛 Face with Tongue - U+1F61B
-  HAHA, // 😆 Grinning Squinting Face - U+1F606
-  LOL, // 😂 Face with Tears of Joy - U+1F602
-  ROFL, // 🤣 Rolling on the Floor Laughing - U+1F923
-  TADA, // 🎉 Party Popper - U+1F389
-  PRTY, // 🥳 Partying Face - U+1F973
-  CLAP, // 👏 Clapping Hands - U+1F44F
-  RAISE, // 🙌 Raising Hands - U+1F64C
-  RHRT, // ❤️ Red Heart - U+2764
-  PHRT, // 💜 Purple Heart - U+1F49C
-  RNBW, // 🌈 Rainbow - U+1F308
-  PEACE, // ✌️ Victory Hand - U+270C
-  TUP, // 👍 Thumbs Up - U+1F44D
-  UARW, // ⬆️ Up Arrow - U+2B06
-  TDOWN, // 👎 Thumbs Down - U+1F44E
-  DARW, // ⬇️ Down Arrow - U+2B07
-  CAKE, // 🎂 Birthday Cake - U+1F382
-};
+// // unicode map
+// enum unicode_name {
+//   HPPY, // 😊 Smiling Face with Smiling Eyes - U+1F60A
+//   KISS, // 😘 Face Blowing a Kiss - U+1F618
+//   SAD, // 😟 Worried Face - U+1F61F
+//   CRY, // 😢 Crying Face - U+1F622
+//   TONG, // 😛 Face with Tongue - U+1F61B
+//   HAHA, // 😆 Grinning Squinting Face - U+1F606
+//   LOL, // 😂 Face with Tears of Joy - U+1F602
+//   ROFL, // 🤣 Rolling on the Floor Laughing - U+1F923
+//   TADA, // 🎉 Party Popper - U+1F389
+//   PRTY, // 🥳 Partying Face - U+1F973
+//   CLAP, // 👏 Clapping Hands - U+1F44F
+//   RAISE, // 🙌 Raising Hands - U+1F64C
+//   RHRT, // ❤️ Red Heart - U+2764
+//   PHRT, // 💜 Purple Heart - U+1F49C
+//   RNBW, // 🌈 Rainbow - U+1F308
+//   PEACE, // ✌️ Victory Hand - U+270C
+//   TUP, // 👍 Thumbs Up - U+1F44D
+//   UARW, // ⬆️ Up Arrow - U+2B06
+//   TDOWN, // 👎 Thumbs Down - U+1F44E
+//   DARW, // ⬇️ Down Arrow - U+2B07
+//   CAKE, // 🎂 Birthday Cake - U+1F382
+// };
 
-const uint32_t PROGMEM unicode_map[] = {
-  [TUP]   = 0x1F44D,
-  [TDOWN] = 0x1F44E,
-  [PEACE] = 0x270C,
-  [ROFL]  = 0x1F923,
-  [LOL]   = 0x1F602,
-  [HAHA]  = 0x1F606,
-  [RHRT]  = 0x2764,
-  [PHRT]  = 0x1F49C,
-  [HPPY]  = 0x1F60A,
-  [CLAP]  = 0x1F44F,
-  [RAISE] = 0x1F64C,
-  [CRY]   = 0x1F622,
-  [PRTY]  = 0x1F973,
-  [KISS]  = 0x1F618,
-  [TONG]  = 0x1F61B,
-  [SAD]   = 0x1F61F,
-  [RNBW]  = 0x1F308,
-  [UARW]  = 0x2B06,
-  [DARW]  = 0x2B07,
-  [CAKE]  = 0x1F382,
-  [TADA]  = 0x1F389,
-};
+// const uint32_t PROGMEM unicode_map[] = {
+//   [TUP]   = 0x1F44D,
+//   [TDOWN] = 0x1F44E,
+//   [PEACE] = 0x270C,
+//   [ROFL]  = 0x1F923,
+//   [LOL]   = 0x1F602,
+//   [HAHA]  = 0x1F606,
+//   [RHRT]  = 0x2764,
+//   [PHRT]  = 0x1F49C,
+//   [HPPY]  = 0x1F60A,
+//   [CLAP]  = 0x1F44F,
+//   [RAISE] = 0x1F64C,
+//   [CRY]   = 0x1F622,
+//   [PRTY]  = 0x1F973,
+//   [KISS]  = 0x1F618,
+//   [TONG]  = 0x1F61B,
+//   [SAD]   = 0x1F61F,
+//   [RNBW]  = 0x1F308,
+//   [UARW]  = 0x2B06,
+//   [DARW]  = 0x2B07,
+//   [CAKE]  = 0x1F382,
+//   [TADA]  = 0x1F389,
+// };
 
 enum custom_keycodes {
   L_PREV = EZ_SAFE_RANGE,
@@ -148,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [L_DEF] = LAYOUT_ergodox_pretty(
     KC_CAPS,   KC_1,       KC_2,     KC_3,    KC_4,      KC_5,   L_PREV,   /**/ L_NEXT,    KC_6,     KC_7,     KC_8,        KC_9,        KC_0,        _____,
-    MO(L_NUM), KC_Q,       KC_W,     KC_E,    KC_R,      KC_T,   KC_ENTER, /**/ KC_DEL,    KC_Y,     KC_U,     KC_I,        KC_O,        KC_P,        MO(L_EMOJI),
+    MO(L_NUM), KC_Q,       KC_W,     KC_E,    KC_R,      KC_T,   KC_ENTER, /**/ KC_DEL,    KC_Y,     KC_U,     KC_I,        KC_O,        KC_P,        _____, // MO(L_EMOJI),
     KC_TAB,    KC_A,       KC_S,     KC_D,    KC_F,      KC_G,             /**/            KC_H,     KC_J,     KC_K,        KC_L,        KC_SCOLON,   KC_QUOTE,
     KC_LSFT,   KC_Z,       KC_X,     KC_C,    KC_V,      KC_B,   KC_SPACE, /**/ KC_BSPACE, KC_N,     KC_M,     KC_COMMA,    KC_DOT,      KC_SLASH,    MO(L_NUM),
     MO(L_NAV), MO(L_FUNC), KC_LCTRL, KC_LGUI, KC_LALT,                     /**/            KC_MINUS, KC_EQUAL, KC_LBRACKET, KC_RBRACKET, MO(L_NAV),
@@ -203,16 +203,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     |      |      |      | |      |      |      |
                                     `--------------------' `--------------------'
   */
-  [L_EMOJI] = LAYOUT_ergodox_pretty(
-    _____,   _____,          _____,           _____,          _____,           _____,           L_PREV, /**/ L_NEXT, _____, _____, _____, _____, _____, _____,
-    _____,   _____,          XP(CLAP, RAISE), XP(TADA, PRTY), XP(TUP, UARW),   XP(CAKE, CAKE),  _____,  /**/ _____,  _____, _____, _____, _____, _____, MO(L_EMOJI),
-    _____,   XP(HPPY, KISS), XP(SAD, CRY),    XP(TONG, HAHA), XP(LOL, ROFL),   XP(RHRT, PHRT),          /**/         _____, _____, _____, _____, _____, _____,
-    KC_LSFT, _____,          _____,           _____,          XP(TDOWN, DARW), XP(RNBW, PEACE), _____,  /**/ _____,  _____, _____, _____, _____, _____, _____,
-    _____,   _____,          _____,           _____,          _____,                                    /**/                _____, _____, _____, _____, _____,
-                                                                               _____,           L_MAIN, /**/ _____,  _____,
-                                                                                                _____,  /**/ _____,
-                                                              KC_BSPACE,       _____,           _____,  /**/ _____,  _____, KC_LSFT
-  ),
+  // [L_EMOJI] = LAYOUT_ergodox_pretty(
+  //   _____,   _____,          _____,           _____,          _____,           _____,           L_PREV, /**/ L_NEXT, _____, _____, _____, _____, _____, _____,
+  //   _____,   _____,          XP(CLAP, RAISE), XP(TADA, PRTY), XP(TUP, UARW),   XP(CAKE, CAKE),  _____,  /**/ _____,  _____, _____, _____, _____, _____, MO(L_EMOJI),
+  //   _____,   XP(HPPY, KISS), XP(SAD, CRY),    XP(TONG, HAHA), XP(LOL, ROFL),   XP(RHRT, PHRT),          /**/         _____, _____, _____, _____, _____, _____,
+  //   KC_LSFT, _____,          _____,           _____,          XP(TDOWN, DARW), XP(RNBW, PEACE), _____,  /**/ _____,  _____, _____, _____, _____, _____, _____,
+  //   _____,   _____,          _____,           _____,          _____,                                    /**/                _____, _____, _____, _____, _____,
+  //                                                                              _____,           L_MAIN, /**/ _____,  _____,
+  //                                                                                               _____,  /**/ _____,
+  //                                                             KC_BSPACE,       _____,           _____,  /**/ _____,  _____, KC_LSFT
+  // ),
 
   /* [L_NAV] Navigation // NAV
     ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
@@ -505,13 +505,13 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     {C_SPCL_B}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL_B},  {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
     {________}, {________}, {________}, {________},                          {C_SPCL},   {________}, {________}, {________},
   },
-  [L_EMOJI] = {
-    {C_FS_0}, {C_FS_1}, {C_FS_2}, {C_FS_3}, {C_FS_4},  {C_FS_4}, {C_FS_3}, {C_FS_2}, {C_FS_1}, {C_FS_0},
-    {C_FS_1}, {C_FS_2}, {C_FS_3}, {C_FS_4}, {C_FS_5},  {C_FS_5}, {C_FS_4}, {C_FS_3}, {C_FS_2}, {C_FS_1},
-    {C_FS_2}, {C_FS_3}, {C_FS_4}, {C_FS_5}, {C_FS_6},  {C_FS_6}, {C_FS_5}, {C_FS_4}, {C_FS_3}, {C_FS_2},
-    {C_FS_3}, {C_FS_4}, {C_FS_5}, {C_FS_6}, {C_FS_0},  {C_FS_0}, {C_FS_6}, {C_FS_5}, {C_FS_4}, {C_FS_3},
-    {C_FS_4}, {C_FS_5}, {C_FS_6}, {C_FS_0},                      {C_FS_0}, {C_FS_6}, {C_FS_5}, {C_FS_4},
-  },
+  // [L_EMOJI] = {
+  //   {C_FS_0}, {C_FS_1}, {C_FS_2}, {C_FS_3}, {C_FS_4},  {C_FS_4}, {C_FS_3}, {C_FS_2}, {C_FS_1}, {C_FS_0},
+  //   {C_FS_1}, {C_FS_2}, {C_FS_3}, {C_FS_4}, {C_FS_5},  {C_FS_5}, {C_FS_4}, {C_FS_3}, {C_FS_2}, {C_FS_1},
+  //   {C_FS_2}, {C_FS_3}, {C_FS_4}, {C_FS_5}, {C_FS_6},  {C_FS_6}, {C_FS_5}, {C_FS_4}, {C_FS_3}, {C_FS_2},
+  //   {C_FS_3}, {C_FS_4}, {C_FS_5}, {C_FS_6}, {C_FS_0},  {C_FS_0}, {C_FS_6}, {C_FS_5}, {C_FS_4}, {C_FS_3},
+  //   {C_FS_4}, {C_FS_5}, {C_FS_6}, {C_FS_0},                      {C_FS_0}, {C_FS_6}, {C_FS_5}, {C_FS_4},
+  // },
   [L_NAV] = {
     {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
     {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},     {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {________},
