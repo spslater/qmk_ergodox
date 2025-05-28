@@ -3,10 +3,12 @@
 QMK="$HOME/Documents/qmk_firmware"
 CUR=$(pwd)
 
-cd "$QMK" && \
-qmk compile -kb ergodox_ez -km sean && \
+cp config.h keymap.c rules.mk "$QMK/keyboards/ergodox_ez/keymaps/spslater"
 
-cd "$CUR" && \
-mv "$QMK/ergodox_ez_base_sean.hex" "$CUR/ergodox_ez_sean.hex" && \
+cd $QMK && \
+qmk compile && \
+qmk flash && \
 
-/Applications/wally-cli "./ergodox_ez_sean.hex"
+cp "$QMK/ergodox_ez_glow_spslater.hex" $CUR
+cd $CUR
+

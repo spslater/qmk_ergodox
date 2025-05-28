@@ -6,13 +6,10 @@
 enum layers {
   L_DEF,
   L_NUM,
-  // L_EMOJI,
   L_NAV,
   L_FUNC,
   L_MVE,
   L_AUD,
-  L_GIMP,
-  L_G_OW,
   LAYER_MAX
 };
 
@@ -67,55 +64,6 @@ enum layers {
 
 #define KC_RT_SPACE LSFT(LCTL(LALT(KC_SPACE)))
 
-
-// // unicode map
-// enum unicode_name {
-//   HPPY, // 😊 Smiling Face with Smiling Eyes - U+1F60A
-//   KISS, // 😘 Face Blowing a Kiss - U+1F618
-//   SAD, // 😟 Worried Face - U+1F61F
-//   CRY, // 😢 Crying Face - U+1F622
-//   TONG, // 😛 Face with Tongue - U+1F61B
-//   HAHA, // 😆 Grinning Squinting Face - U+1F606
-//   LOL, // 😂 Face with Tears of Joy - U+1F602
-//   ROFL, // 🤣 Rolling on the Floor Laughing - U+1F923
-//   TADA, // 🎉 Party Popper - U+1F389
-//   PRTY, // 🥳 Partying Face - U+1F973
-//   CLAP, // 👏 Clapping Hands - U+1F44F
-//   RAISE, // 🙌 Raising Hands - U+1F64C
-//   RHRT, // ❤️ Red Heart - U+2764
-//   PHRT, // 💜 Purple Heart - U+1F49C
-//   RNBW, // 🌈 Rainbow - U+1F308
-//   PEACE, // ✌️ Victory Hand - U+270C
-//   TUP, // 👍 Thumbs Up - U+1F44D
-//   UARW, // ⬆️ Up Arrow - U+2B06
-//   TDOWN, // 👎 Thumbs Down - U+1F44E
-//   DARW, // ⬇️ Down Arrow - U+2B07
-//   CAKE, // 🎂 Birthday Cake - U+1F382
-// };
-
-// const uint32_t PROGMEM unicode_map[] = {
-//   [TUP]   = 0x1F44D,
-//   [TDOWN] = 0x1F44E,
-//   [PEACE] = 0x270C,
-//   [ROFL]  = 0x1F923,
-//   [LOL]   = 0x1F602,
-//   [HAHA]  = 0x1F606,
-//   [RHRT]  = 0x2764,
-//   [PHRT]  = 0x1F49C,
-//   [HPPY]  = 0x1F60A,
-//   [CLAP]  = 0x1F44F,
-//   [RAISE] = 0x1F64C,
-//   [CRY]   = 0x1F622,
-//   [PRTY]  = 0x1F973,
-//   [KISS]  = 0x1F618,
-//   [TONG]  = 0x1F61B,
-//   [SAD]   = 0x1F61F,
-//   [RNBW]  = 0x1F308,
-//   [UARW]  = 0x2B06,
-//   [DARW]  = 0x2B07,
-//   [CAKE]  = 0x1F382,
-//   [TADA]  = 0x1F389,
-// };
 
 enum custom_keycodes {
   L_PREV = SAFE_RANGE,
@@ -173,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       |MO NAV|MO 13 | CTRL | CMD  | ALT  | ,-------------. ,-------------. |  - _ | = +  | [ {  | ] }  |MO NAV|
       `----------------------------------' |  ↑   |  ↓   | |  ←   |  →   | `----------------------------------'
                                     ,------|------|------| |------+------+------.
-                                    |BCKSPC|DELETE| DEF  | |      |ENTER |SPACE |
+                                    |BCKSPC|DELETE| DEF  | | RGB  |ENTER |SPACE |
                                     |  ⌫   |  ←   |------| |------|  ↵   |  ␣   |
                                     |      |      | ESC  | | ESC  |      |      |
                                     `--------------------' `--------------------'
@@ -185,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,   KC_Z,       KC_X,     KC_C,    KC_V,      KC_B,   KC_SPACE,  /**/ KC_BSPC  , KC_N,     KC_M,     KC_COMMA, KC_DOT,  KC_SLASH, MO(L_NUM),
     MO(L_NAV), MO(L_FUNC), KC_LCTL,  KC_LGUI, KC_LALT,                      /**/            KC_MINUS, KC_EQUAL, KC_LBRC , KC_RBRC, MO(L_NAV),
                                                          KC_UP,  KC_DOWN,   /**/ KC_LEFT,   KC_RIGHT,
-                                                                 L_MAIN,    /**/ _____,
+                                                                 L_MAIN,    /**/ QK_RGB_MATRIX_TOGGLE,
                                               KC_BSPC  , KC_DEL, KC_ESC,    /**/ KC_ESC,   KC_ENTER, KC_SPACE
   ),
   /* [L_NUM] Special / Number Pad // NUMPAD
@@ -330,62 +278,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                           _____,   _____,    /**/ _____,  _____,
                                                                                    L_MAIN,   /**/ _____,
                                                                 KC_SPACE, KC_SAVE, KC_ENTER, /**/ _____,  _____, _____
-  ),
-  /* [L_GIMP] Gimp // GIMP
-    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
-    |        |      |      |      |      |      | PREV |     | NEXT |      |      |  /   | *    |  -   |        |
-    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
-    | ESC    | FLIP | SCLE | CPKR | CSLT |      |      |     |      |      |  7   |  8   |  9   |  +   |        |
-    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
-    |SLT ALL | ROTA | MOVE | BUKT | RECT | FREE |------|     |------|      |  4   |  5   |  6   |  .   |        |
-    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
-    | SHIFT  |      | SWAP | TEXT | FUZY |INVRT |      |     |      |      |  1   |  2   |  3   |BKSPC |        |
-    `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
-      |MO NAV|      |      | UNDO | REDO | ,-------------. ,-------------. |      |      |      |      |MO NAV|
-      `----------------------------------' |      |      | |      |      | `----------------------------------'
-                                    ,------|------|------| |------+------+------.
-                                    |      |      | DEF  | |      |      |      |
-                                    | CMD  | DEL  |------| |------|   ↵  |  0   |
-                                    |      |      | SAVE | | TAB  |      |      |
-                                    `--------------------' `--------------------'
-  */
-  [L_GIMP] = LAYOUT_ergodox_pretty(
-    _____,      _____,      _____,      _____,      _____,      _____,      L_PREV,  /**/ L_NEXT, _____,    _____, KC_SLASH, KC_ASTERISK, KC_MINUS,  _____,
-    KC_ESC,     LSFT(KC_L), LSFT(KC_S), KC_O,       LSFT(KC_O), _____,      _____,   /**/ _____,  _____,    KC_7,  KC_8,     KC_9,        KC_PLUS,   _____,
-    LGUI(KC_A), LSFT(KC_R), KC_M,       LSFT(KC_B), KC_R,       KC_F,                /**/         _____,    KC_4,  KC_5,     KC_6,        KC_DOT,    _____,
-    KC_LSFT,    _____,      KC_X,       KC_T,       KC_U,       LGUI(KC_I), _____,   /**/ _____,  _____,    KC_1,  KC_2,     KC_3,        KC_BSPC  , _____,
-    MO(L_NAV),  _____,      _____,      LGUI(KC_Z), LGUI(KC_Y),                      /**/                   _____, _____,    _____,       _____,     MO(L_NAV),
-                                                                _____,      _____,   /**/ _____,  _____,
-                                                                            L_MAIN,  /**/ _____,
-                                                    KC_LGUI,    KC_DEL,     KC_SAVE, /**/ KC_TAB, KC_ENTER, KC_0
-  ),
-  /* L_G_OW Game: Overwatch // OW
-    ,--------------------------------------------------.     ,--------------------------------------------------.  DEF: TO Default (layer 0)
-    |        |      |      |      |      |      | PREV |     | NEXT |      |      |      |      |      |        |
-    |--------+------+------+------+------+-------------|     |------+------+------+------+------+------+--------|
-    |        |  F1  |  Q   |  W   |  R   |      | glhf |     |      |      |      |      |      |      |        |
-    |--------+------+------+------+------+------|      |     |      |------+------+------+------+------+--------|
-    | Tab  ↹ |  V   |  A   |  S   |  D   |  X   |------|     |------|      |      |      |      |      |        |
-    |--------+------+------+------+------+------|  gg  |     |      |------+------+------+------+------+--------|
-    | Shift  |  1   |  C   |  T   |  E   |  H   |      |     |      |      |      |      |      |      |        |
-    `--------+------+------+------+------+-------------'     `-------------+------+------+------+------+--------'
-      | CTL  |  2   |      |      |      | ,-------------. ,-------------. |      |      |      |      |      |
-      `----------------------------------' | ESC  |      | |      |      | `----------------------------------'
-                                    ,------|------|------| |------+------+------.
-                                    |      |      | DEF  | |      |      |      |
-                                    |SPACE |      |------| |------|      |      |
-                                    |      |      |ENTER | |      |      |      |
-                                    `--------------------' `--------------------'
-  */
-  [L_G_OW] = LAYOUT_ergodox_pretty(
-    LGUI(KC_PSCR), _____, _____, _____, _____,    _____,    L_PREV, /**/ L_NEXT, _____, _____, _____, _____, _____, _____,
-    _____,         KC_F1, KC_Q,  KC_W,  KC_E,     KC_R,     M_GLHF, /**/ _____,  _____, _____, _____, _____, _____, _____,
-    KC_TAB,        KC_V,  KC_A,  KC_S,  KC_D,     KC_X,             /**/         _____, _____, _____, _____, _____, _____,
-    KC_LSFT,       KC_1,  KC_C,  KC_Y,  KC_H,     KC_T,     M_GG,   /**/ _____,  _____, _____, _____, _____, _____, _____,
-    KC_LCTL,       KC_2,  _____, _____, KC_N,                       /**/                _____, _____, _____, _____, _____,
-                                                  _____,    _____,  /**/ _____,  _____,
-                                                            L_MAIN, /**/ _____,
-                                        KC_SPACE, KC_ENTER, KC_ESC, /**/ _____,  _____, _____
   ),
 };
 
@@ -538,13 +430,6 @@ const uint8_t PROGMEM ledmap[][MATRIX_ROWS*MATRIX_COLS][3] = {
     {C_SPCL_B}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL_B},  {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
     {________}, {________}, {________}, {________},                          {C_SPCL},   {________}, {________}, {________},
   },
-  // [L_EMOJI] = {
-  //   {C_FS_0}, {C_FS_1}, {C_FS_2}, {C_FS_3}, {C_FS_4},  {C_FS_4}, {C_FS_3}, {C_FS_2}, {C_FS_1}, {C_FS_0},
-  //   {C_FS_1}, {C_FS_2}, {C_FS_3}, {C_FS_4}, {C_FS_5},  {C_FS_5}, {C_FS_4}, {C_FS_3}, {C_FS_2}, {C_FS_1},
-  //   {C_FS_2}, {C_FS_3}, {C_FS_4}, {C_FS_5}, {C_FS_6},  {C_FS_6}, {C_FS_5}, {C_FS_4}, {C_FS_3}, {C_FS_2},
-  //   {C_FS_3}, {C_FS_4}, {C_FS_5}, {C_FS_6}, {C_FS_0},  {C_FS_0}, {C_FS_6}, {C_FS_5}, {C_FS_4}, {C_FS_3},
-  //   {C_FS_4}, {C_FS_5}, {C_FS_6}, {C_FS_0},                      {C_FS_0}, {C_FS_6}, {C_FS_5}, {C_FS_4},
-  // },
   [L_NAV] = {
     {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
     {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},    {C_NAV},     {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {C_NAV_B},  {________},
@@ -565,20 +450,6 @@ const uint8_t PROGMEM ledmap[][MATRIX_ROWS*MATRIX_COLS][3] = {
     {C_A_AUD},  {C_A_AUD},  {C_A_AUD},  {C_A_AUD},  {C_A_AUD},   {________}, {C_NAV},    {C_NAV},    {C_NAV},    {________},
     {C_A_AUD},  {C_A_AUD},  {C_A_AUD},  {C_A_AUD},  {________},  {________}, {________}, {________}, {________}, {________},
     {________}, {C_A_AUD},  {________}, {________},                          {________}, {________}, {________}, {________},
-  },
-  [L_GIMP] = {
-    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},
-    {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {________},  {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
-    {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_SPCL},
-    {________}, {C_SPCL},   {C_SPCL},   {C_SPCL},   {C_SPCL},    {________}, {C_LTRS},   {C_LTRS},   {C_LTRS},   {C_OTHR},
-    {________}, {________}, {C_SPCL},   {C_SPCL},                            {________}, {________}, {________}, {________},
-  },
-  [L_G_OW] = {
-    {________}, {________}, {________}, {________}, {________},  {________}, {________}, {________}, {________}, {________},
-    {G_INFO},   {G_ATTK},   {G_MOVE},   {G_ACTN},   {G_ACTN},    {________}, {________}, {________}, {________}, {________},
-    {G_ATTK},   {G_MOVE},   {G_MOVE},   {G_MOVE},   {G_ATTK},    {________}, {________}, {________}, {________}, {________},
-    {G_ACTN},   {G_INFO},   {G_INFO},   {G_ACTN},   {G_ACTN},    {________}, {________}, {________}, {________}, {________},
-    {G_ACTN},   {________}, {________}, {G_MENU},                            {________}, {________}, {________}, {________},
   },
 };
 
